@@ -1,3 +1,5 @@
+package journée;
+
 public class Journee {
     public int obj_revenus;
     public int revenus;
@@ -62,11 +64,7 @@ public class Journee {
         }
     }
 
-    public void Horaires(){
-        if(jour == jour.LUNDI){
 
-        }
-    }
 
 
 }
