@@ -12,15 +12,17 @@ public   class Client {
     private int attente_actuel = 0;
     private Status status; //client.Client habitué ou non si oui il aura toujours la meme commande
     private boolean parti = false;
+    public boolean surPlace; //true = sur place, false = à emporter
 
 
-    public Client(int pourboire, String nom, int temp_attente_max, Status status, Preferences preferences) {
+    public Client(int pourboire, String nom, int temp_attente_max, Status status, Preferences preferences,boolean surPlace) {
         this.status = status;
         this.temp_attente_max = temp_attente_max;
         this.pourboire = pourboire;
         this.preferences = preferences;
         this.nom = nom;
         this.commande = null;
+        this.surPlace =surPlace;
     }
 
     public void Passer_Commander(Commande commande) {
@@ -56,7 +58,7 @@ public   class Client {
             this.parti = true;
         }
         else if(this.commande.isDone){
-            if (this.commande.surPlace){
+            if (this.surPlace){
 
             }
             else{
