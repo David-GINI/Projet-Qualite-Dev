@@ -1,4 +1,4 @@
-package Enum_Client;
+package client.enum_client;
 
 public enum Methode_Commande {
     SUR_PLACE("Sur place"),

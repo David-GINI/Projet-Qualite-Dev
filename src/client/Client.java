@@ -1,12 +1,14 @@
-import Enum_Client.Methode_Commande;
-import Enum_Client.Status;
+package client;
+
+import client.enum_client.Methode_Commande;
+import client.enum_client.Status;
 
 public class Client {
     private Commande commande; //Commande du client
     private int pourboire;
     private String nom;
     private int temp_attente_max; // Si le temps est dépassé il quitte le restaurant
-    private Status status; //Client habitué ou non si oui il aura toujours la meme commande
+    private Status status; //client.Client habitué ou non si oui il aura toujours la meme commande
     private Methode_Commande methode_commande;  //Sur place ou a emporter
 
     public Client(int pourboire, String nom, int temp_attente_max, Status status, Methode_Commande methode_commande) {
