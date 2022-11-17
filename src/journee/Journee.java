@@ -1,13 +1,13 @@
-package journée;
+package journee;
 
 public class Journee {
     public int obj_revenus;
     public int revenus;
-    public jour jour;
+    public Jour jour;
     public String heure_open = "11h";
     public String heure_close = "00h";
 
-    public Journee(int obj_revenus, int revenus, jour jour, String heure_open, String heure_close) {
+    public Journee(int obj_revenus, int revenus, Jour jour, String heure_open, String heure_close) {
         this.obj_revenus = obj_revenus;
         this.revenus = revenus;
         this.jour = jour;
@@ -31,11 +31,11 @@ public class Journee {
         this.revenus = revenus;
     }
 
-    public jour getJour() {
+    public Jour getJour() {
         return jour;
     }
 
-    public void setJour(jour jour) {
+    public void setJour(Jour jour) {
         this.jour = jour;
     }
 
