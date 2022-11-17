@@ -41,4 +41,58 @@ public class Commande {
         this.progress = 0;
         this.isDone = false;
     }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public Viandes getViande() {
+        return viande;
+    }
+
+    public ArrayList<Condiments> getCondiments() {
+        return condiments;
+    }
+
+    public Sauces getSauce() {
+        return sauce;
+    }
+
+    public boolean isSurPlace() {
+        return surPlace;
+    }
+
+    public int getTemps() {
+        return temps;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    @Override
+    public String toString() {
+        return "Commande{" +
+                "prix=" + prix +
+                ", viande=" + viande +
+                ", condiments=" + condiments +
+                ", sauce=" + sauce +
+                ", surPlace=" + surPlace +
+                ", temps=" + temps +
+                ", progress=" + progress +
+                ", isDone=" + isDone +
+                '}';
+    }
 }
