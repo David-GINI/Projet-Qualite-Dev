@@ -1,13 +1,13 @@
 package journee;
 
 public enum Jour {
-    LUNDI("lundi"),
-    MARDI("mardi"),
-    MERCREDI("mercredi"),
-    JEUDI("jeudi"),
-    VENDREDI("vendredi"),
-    SAMEDI("samedi"),
-    DIMANCHE("dimanche");
+    LUNDI("Lundi"),
+    MARDI("Mardi"),
+    MERCREDI("Mercredi"),
+    JEUDI("Jeudi"),
+    VENDREDI("Vendredi"),
+    SAMEDI("Samedi"),
+    DIMANCHE("Dimanche");
     private final String value;
 
     Jour(String value) {

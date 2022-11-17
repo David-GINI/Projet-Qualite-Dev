@@ -1,7 +1,7 @@
 package client;
 
 public enum Status {
-    HABUTUE("Habitue"),
+    HABITUE("Habitué"),
     NORMAL("Normal");
     private final String value;
     Status(String value) {
