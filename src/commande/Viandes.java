@@ -1,3 +1,5 @@
+package commande;
+
 public enum Viandes {
     BOEUF("Boeuf"),
     POULET("Poulet"),

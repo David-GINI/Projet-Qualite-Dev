@@ -1,3 +1,5 @@
+package commande;
+
 public enum Sauces {
     KETCHUP("Ketchup"),
     MAYONNAISE("Mayonnaise"),

@@ -1,3 +1,5 @@
+package commande;
+
 public enum Condiments {
     SALADE("Salade"),
     TOMATES("Tomates"),
