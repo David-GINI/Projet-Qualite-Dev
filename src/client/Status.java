@@ -1,4 +1,4 @@
-package client.enum_client;
+package client;
 
 public enum Status {
     HABUTUE("Habitue"),
