@@ -1,10 +1,7 @@
 package client;
 
-import client.enum_client.Methode_Commande;
-import client.enum_client.Status;
-
 public class Client {
-    private Commande commande; //Commande du client
+    private commande.Commande commande; //Commande du client
     private int pourboire;
     private String nom;
     private int temp_attente_max; // Si le temps est dépassé il quitte le restaurant
@@ -20,7 +17,5 @@ public class Client {
         this.commande = null;
     }
 
-    public void Passer_Commander(Commande commande){
-        this.commande = commande;
-    }
+
 }
