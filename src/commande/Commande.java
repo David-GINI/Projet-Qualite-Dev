@@ -12,7 +12,7 @@ public class Commande {
     public int progress; //Progres de la commande
     public boolean isDone; //Indique si la commande est prete
 
-    public Commande(Viandes viande, ArrayList<Condiments> condiments, Sauces sauce, boolean surPlace, int temps) {
+    public Commande(Viandes viande, ArrayList<Condiments> condiments, Sauces sauce, boolean surPlace) {
 
         double prix = 0;
         switch (viande) {
