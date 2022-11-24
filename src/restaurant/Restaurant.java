@@ -1,5 +1,7 @@
 package restaurant;
 import client.Client;
+
+
 import java.util.ArrayList;
 
 public class Restaurant {
@@ -12,6 +14,8 @@ public class Restaurant {
         this.listclient = listclient;
         this.caisse = caisse;
     }
+
+
 
 
 }
