@@ -1,5 +1,5 @@
 package journee;
-import java.sql.Date;
+import java.util.Random;
 
 public class Journee {
     public int obj_revenus;
@@ -77,14 +77,17 @@ public class Journee {
         }
     }
 
+
+
     public void fermeture(){
+        Random hour = new Random();
         if(heure == heure_close){
             System.out.println("Mama's Burgeria est fermé revenez demain !");
         }
     }
 
     public void ouverture(){
-        System.out.println(System.currentTimeMillis()/ 1000); //pour avoir l'heure actuel
+
         if (heure == heure_open){
             System.out.println("Bienvenue chez Mama's Burgeria");
         }

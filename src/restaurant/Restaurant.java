@@ -6,6 +6,7 @@ import commande.Commande;
 import employe.Employe;
 import misc.Data;
 import table.Table;
+import journee.Journee;
 
 import java.util.ArrayList;
 import java.util.Random;
