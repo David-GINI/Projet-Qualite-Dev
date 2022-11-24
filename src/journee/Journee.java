@@ -3,6 +3,7 @@ package journee;
 public class Journee {
     public int obj_revenus;
     public int revenus;
+
     public Jour jour;
     public String heure_open = "11h";
     public String heure_close = "00h";
