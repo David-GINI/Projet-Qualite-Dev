@@ -5,6 +5,7 @@ import client.Status;
 import commande.Commande;
 import employe.Employe;
 import table.Table;
+import journee.Journee;
 
 import java.util.ArrayList;
 import java.util.Random;
