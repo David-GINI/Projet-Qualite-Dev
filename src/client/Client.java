@@ -5,7 +5,7 @@ import commande.Viandes;
 
 public   class Client {
     private Commande commande; //Commande du client
-    private int pourboire;
+    private double pourboire;
     private final Preferences preferences;
     private String nom;
     private final int temp_attente_max; // Si le temps est dépassé il quitte le restaurant
@@ -15,7 +15,7 @@ public   class Client {
     public boolean surPlace; //true = sur place, false = à emporter
 
 
-    public Client(int pourboire, String nom, int temp_attente_max, Status status, Preferences preferences,boolean surPlace) {
+    public Client(double pourboire, String nom, int temp_attente_max, Status status, Preferences preferences,boolean surPlace) {
         this.status = status;
         this.temp_attente_max = temp_attente_max;
         this.pourboire = pourboire;

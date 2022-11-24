@@ -20,13 +20,17 @@ public class Commande {
             case BOEUF_CASHER:
             case BOEUF_HALAL: {
                 prix = 5.80;
+                this.temps = 60;
             }
             case POULET:
                 prix = 5.20;
+                this.temps = 80;
             case POISSON:
                 prix = 6.15;
+                this.temps = 70;
             case VEGETARIEN:
                 prix = 6.00;
+                this.temps = 50;
             default:
                 System.out.println("Paramètre viande invalide.");
                 break;
@@ -37,7 +41,6 @@ public class Commande {
         this.condiments = condiments;
         this.sauce = sauce;
         this.surPlace = surPlace;
-        this.temps = temps;
         this.progress = 0;
         this.isDone = false;
     }
