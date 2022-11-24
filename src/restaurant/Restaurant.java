@@ -4,43 +4,35 @@ import client.Preferences;
 import client.Status;
 import commande.Commande;
 import employe.Employe;
-import table.Etat;
+import misc.Data;
 import table.Table;
+import journee.Journee;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Restaurant {
-    public Etat etatProprete;
+    public EtatProprete etatProprete;
     public ArrayList<Employe> listeEmployes = new ArrayList<Employe>();
     public ArrayList<Client> listeClients = new ArrayList<Client>();
     public ArrayList<Client> fileDAttente = new ArrayList<Client>();
     public ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
     public ArrayList<Table> listeTables = new ArrayList<Table>();
-    public List<Double> listeNotes = new ArrayList<>();
-    public double note;
     public double caisse;
+    public Data donnees;
 
-    public Restaurant(Etat etatProprete, float caisse) {
-        this.etatProprete = Etat.PROPRE;
+    public Restaurant(EtatProprete etatProprete, float caisse) {
+        this.etatProprete = EtatProprete.PROPRE;
         this.caisse = 0;
     }
-    public void actualiserNote(){
-        int moyenne = 0;
-        for(int i = 0; i<this.listeNotes.size(); ++i){
-            moyenne+=this.listeNotes.get(i);
-        }
-        moyenne = moyenne/listeNotes.size();
-        this.note = moyenne;
-    }
+
     public void genereClient() {
         Random randomizer = new Random();
 
         Commande commande;
         double pourboire = randomizer.nextDouble(0.00,6.99);;
         Preferences preferences;
-        String nom = "PLACEHOLDER";
+        String nom = donnees.getRandomPrenom();
         int attente = randomizer.nextInt(50, 200); //Définition de la patience du client
         boolean surPlace;
 
@@ -60,5 +52,4 @@ public class Restaurant {
         Client client = new Client(pourboire, nom, attente, Status.NORMAL, preferences, surPlace);
         listeClients.add(client);
     }
-
 }
