@@ -1,18 +1,23 @@
 package journee;
+import java.sql.Date;
 
 public class Journee {
     public int obj_revenus;
     public int revenus;
+
     public Jour jour;
     public String heure_open = "11h";
     public String heure_close = "00h";
+    public String heure;
 
-    public Journee(int obj_revenus, int revenus, Jour jour, String heure_open, String heure_close) {
+
+    public Journee(int obj_revenus, int revenus, Jour jour, String heure_open, String heure_close, String heure) {
         this.obj_revenus = obj_revenus;
         this.revenus = revenus;
         this.jour = jour;
         this.heure_open = heure_open;
         this.heure_close = heure_close;
+        this.heure = heure;
     }
 
     public int getObj_revenus() {
@@ -55,6 +60,14 @@ public class Journee {
         this.heure_close = heure_close;
     }
 
+    public String getHeure() {
+        return heure;
+    }
+
+    public void setHeure(String heure) {
+        this.heure = heure;
+    }
+
     public void revenusEgalObjectif(){ //on vérifie si les revenus de la journée sont égales à l'objectif fixé
         if(revenus >= obj_revenus){ //objectif atteint
             System.out.println(revenus + "€\n" + obj_revenus + "€\n" + "Ce fut une bonne journée !");
@@ -64,7 +77,17 @@ public class Journee {
         }
     }
 
+    public void fermeture(){
+        if(heure == heure_close){
+            System.out.println("Mama's Burgeria est fermé revenez demain !");
+        }
+    }
 
-
+    public void ouverture(){
+        System.out.println(System.currentTimeMillis()/ 1000); //pour avoir l'heure actuel
+        if (heure == heure_open){
+            System.out.println("Bienvenue chez Mama's Burgeria");
+        }
+    }
 
 }
