@@ -4,25 +4,36 @@ import client.Preferences;
 import client.Status;
 import commande.Commande;
 import employe.Employe;
+import table.Etat;
 import table.Table;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Restaurant {
-    public EtatProprete etatProprete;
+    public Etat etatProprete;
     public ArrayList<Employe> listeEmployes = new ArrayList<Employe>();
     public ArrayList<Client> listeClients = new ArrayList<Client>();
     public ArrayList<Client> fileDAttente = new ArrayList<Client>();
     public ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
     public ArrayList<Table> listeTables = new ArrayList<Table>();
+    public List<Double> listeNotes = new ArrayList<>();
+    public double note;
     public double caisse;
 
-    public Restaurant(EtatProprete etatProprete, float caisse) {
-        this.etatProprete = EtatProprete.PROPRE;
+    public Restaurant(Etat etatProprete, float caisse) {
+        this.etatProprete = Etat.PROPRE;
         this.caisse = 0;
     }
-
+    public void actualiserNote(){
+        int moyenne = 0;
+        for(int i = 0; i<this.listeNotes.size(); ++i){
+            moyenne+=this.listeNotes.get(i);
+        }
+        moyenne = moyenne/listeNotes.size();
+        this.note = moyenne;
+    }
     public void genereClient() {
         Random randomizer = new Random();
 

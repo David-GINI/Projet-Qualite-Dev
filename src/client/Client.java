@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public   class Client {
-    private Commande commande; //Commande du client
-    private double pourboire;
-    private final Preferences preferences;
-    private String nom;
-    private final int temp_attente_max; // Si le temps est dépassé il quitte le restaurant
-    private int attente_actuel = 0;
-    private Status status; //client.Client habitué ou non si oui il aura toujours la meme commande
-    private boolean parti = false;
-    public boolean surPlace; //true = sur place, false = à emporter
+    protected Commande commande; //Commande du client
+    protected double pourboire;
+    protected final Preferences preferences;
+    protected String nom;
+    protected final int temp_attente_max; // Si le temps est dépassé il quitte le restaurant
+    protected int attente_actuel = 0;
+    protected Status status; //client.Client habitué ou non si oui il aura toujours la meme commande
+    protected boolean parti;
+    protected boolean surPlace; //true = sur place, false = à emporter
 
 
     public Client(double pourboire, String nom, int temp_attente_max, Status status, Preferences preferences,boolean surPlace) {
@@ -28,6 +28,7 @@ public   class Client {
         this.nom = nom;
         this.commande = null;
         this.surPlace =surPlace;
+        this.parti = false;
     }
 
     public void Passer_Commander() { // Fonction qui randomize la création de la commande du client
