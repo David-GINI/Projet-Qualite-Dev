@@ -4,6 +4,7 @@ import client.Preferences;
 import client.Status;
 import commande.Commande;
 import employe.Employe;
+import misc.Data;
 import table.Table;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class Restaurant {
     public ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
     public ArrayList<Table> listeTables = new ArrayList<Table>();
     public double caisse;
+    public Data donnees;
 
     public Restaurant(EtatProprete etatProprete, float caisse) {
         this.etatProprete = EtatProprete.PROPRE;
@@ -29,7 +31,7 @@ public class Restaurant {
         Commande commande;
         double pourboire = randomizer.nextDouble(0.00,6.99);;
         Preferences preferences;
-        String nom = "PLACEHOLDER";
+        String nom = donnees.getRandomPrenom();
         int attente = randomizer.nextInt(50, 200); //Définition de la patience du client
         boolean surPlace;
 
@@ -49,5 +51,4 @@ public class Restaurant {
         Client client = new Client(pourboire, nom, attente, Status.NORMAL, preferences, surPlace);
         listeClients.add(client);
     }
-
 }
