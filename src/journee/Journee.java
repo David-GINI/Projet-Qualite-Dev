@@ -83,7 +83,7 @@ public class Journee {
     }
 
     public void ouverture(){
-        System.out.println(System.currentTimeMillis()/ 1000);
+        System.out.println(System.currentTimeMillis()/ 1000); //pour avoir l'heure actuel
         if (heure == heure_open){
             System.out.println("Bienvenue chez Mama's Burgeria");
         }
