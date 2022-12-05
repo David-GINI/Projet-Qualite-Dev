@@ -33,7 +33,6 @@ public class Restaurant {
         int moyenne = 0;
         for(int i = 0; i<this.listeNotes.size(); ++i){
             moyenne+= this.listeNotes.get(i);
-
         }
         moyenne = moyenne / this.listeNotes.size();
         this.note = moyenne;
