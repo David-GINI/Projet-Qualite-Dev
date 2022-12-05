@@ -8,9 +8,10 @@ import commande.Viandes;
 import java.util.ArrayList;
 import java.util.Random;
 
-public   class Client {
+public   class  Client extends Thread {
     protected Commande commande; //Commande du client
     protected double pourboire;
+
     protected final Preferences preferences;
     protected String nom;
     protected final int temp_attente_max; // Si le temps est dépassé il quitte le restaurant
@@ -120,23 +121,11 @@ public   class Client {
     }
 
     public void attendre(){
+        Thread_Attendre1 t1 = new Thread_Attendre1(this);
+        new Thread(t1).start();
+        Thread t2 = new Thread();
+        t2.start();
 
-        if(this.attente_actuel == this.temp_attente_max){
-            System.out.println("Je me casse c'est trop long !");
-            this.parti = true;
-        }
-        else if(this.commande.isDone){
-            if (this.surPlace){
-
-            }
-            else{
-                System.out.println("Au revoir, Merci !");
-                this.parti = true;
-            }
-        }
-        else{
-            this.attente_actuel += 1;
         }
 
     }
-}
