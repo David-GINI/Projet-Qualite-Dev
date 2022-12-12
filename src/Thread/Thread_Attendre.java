@@ -1,12 +1,15 @@
 package Thread;
 
 import client.Client;
+import restaurant.Restaurant;
 
-public class Thread_Attendre1 implements Runnable{
-    private Client client;
+public class Thread_Attendre implements Runnable{
+    private final Client client;
+    private final Restaurant resto;
 
-    public Thread_Attendre1(Client client) {
+    public Thread_Attendre(Client client, Restaurant resto) {
         this.client = client;
+        this.resto = resto;
     }
 
     @Override
@@ -18,6 +21,7 @@ public class Thread_Attendre1 implements Runnable{
             }
             client.setAttente_actuel(client.getAttente_actuel() + 1);
             if (client.isEstPris()) {
+                resto.listeClientsPris.add(this.client);
                 break;
             }
             if (client.getAttente_actuel() == client.getTemp_attente_max()) {

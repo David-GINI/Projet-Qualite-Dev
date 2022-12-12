@@ -4,12 +4,16 @@ import commande.Commande;
 import commande.Condiments;
 import commande.Sauces;
 import commande.Viandes;
-import Thread.Thread_Attendre1;
+import Thread.Thread_Attendre;
+import restaurant.Restaurant;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public   class  Client extends Thread {
+    public final int  TEMPS_MANGER = 50;
+    protected Restaurant resto;
+    protected boolean attend = false;
     protected Commande commande; //Commande du client
     protected double pourboire;
     protected boolean estPris;
@@ -23,7 +27,8 @@ public   class  Client extends Thread {
     protected boolean surPlace; //true = sur place, false = à emporter
 
 
-    public Client(double pourboire, String nom, int temp_attente_max, Status status, Preferences preferences,boolean surPlace) {
+    public Client(Restaurant resto, double pourboire, String nom, int temp_attente_max, Status status, Preferences preferences,boolean surPlace) {
+        this.resto = resto;
         this.status = status;
         this.temp_attente_max = temp_attente_max;
         this.pourboire = pourboire;
@@ -151,7 +156,7 @@ public   class  Client extends Thread {
     }
 
     public void attendre(){
-        Thread_Attendre1 t1 = new Thread_Attendre1(this);
+        Thread_Attendre t1 = new Thread_Attendre(this, resto);
         new Thread(t1).start();
 
         }

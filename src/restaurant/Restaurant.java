@@ -5,10 +5,10 @@ import client.Status;
 import commande.Commande;
 import employe.Cuisinier;
 import employe.Employe;
+import employe.Nettoyeur;
 import misc.Data;
 import table.Etat;
 import table.Table;
-import journee.Journee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,7 @@ public class Restaurant {
             default -> surPlace = false;
         }
 
-        Client client = new Client(pourboire, nom, attente, Status.NORMAL, preferences, surPlace);
+        Client client = new Client(this, pourboire, nom, attente, Status.NORMAL, preferences, surPlace);
         listeClients.add(client);
     }
     public ArrayList<Cuisinier> getCuisinier(){
@@ -74,5 +74,14 @@ public class Restaurant {
             }
         }
         return listeCuisinier;
+    }
+    public ArrayList<Nettoyeur> getNettoyeur(){
+        ArrayList<Nettoyeur> listeNettoyeur = new ArrayList<>();
+        for(int i = 0; i<this.listeEmployes.size(); ++i){
+            if(listeEmployes.get(i) instanceof Nettoyeur){
+                listeNettoyeur.add((Nettoyeur) listeEmployes.get(i));
+            }
+        }
+        return listeNettoyeur;
     }
 }

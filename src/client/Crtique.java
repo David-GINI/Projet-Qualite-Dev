@@ -5,8 +5,8 @@ import table.Etat;
 
 public class Crtique extends Client implements Critique {
     private double note;
-    public Crtique(double pourboire, String nom, int temp_attente_max, Status status, Preferences preferences, boolean surPlace) {
-        super(pourboire, nom, temp_attente_max, status, preferences, surPlace);
+    public Crtique(Restaurant resto,double pourboire, String nom, int temp_attente_max, Status status, Preferences preferences, boolean surPlace) {
+        super(resto, pourboire, nom, temp_attente_max, status, preferences, surPlace);
         this.note = 5;
     }
 

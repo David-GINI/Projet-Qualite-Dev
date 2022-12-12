@@ -14,29 +14,26 @@ public class Thead_Handle_Client implements Runnable {
 
     @Override
     public void run() {
-        while(true){
+        while(resto.ouvert){
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ignored) {
             }
-            if (!resto.ouvert){
-                break;
-            }
-            else{
                 ArrayList<Cuisinier> listeCuisinier = resto.getCuisinier();
                 for(int i = 0; i < listeCuisinier.size(); ++i){
-                    if(!resto.listeEmployes.get(i).occupe){
-                        resto.fileDAttente.get(0).setEstPris(true);
-                        resto.fileDAttente.get(0).Passer_Commander();
-                        listeCuisinier.get(i).setCommande(resto.fileDAttente.get(0).getCommande());
-                        resto.listeClientsPris.add(resto.fileDAttente.get(0));
-                        resto.fileDAttente.remove(0);
-                        resto.listeEmployes.get(i).occupe = true;
-                        break;
+                        if(!resto.listeEmployes.get(i).occupe){
+                            resto.fileDAttente.get(0).setEstPris(true);
+                            resto.fileDAttente.get(0).Passer_Commander();
+                            listeCuisinier.get(i).setCommande(resto.fileDAttente.get(0).getCommande());
+                            ThreadProcessCommande t1 = new ThreadProcessCommande(listeCuisinier.get(i), resto);
+                            new Thread(t1).start();
+                            resto.listeClientsPris.add(resto.fileDAttente.get(0));
+                            resto.fileDAttente.remove(0);
+                            resto.listeEmployes.get(i).occupe = true;
+                            break;
                     }
                 }
             }
 
         }
     }
-}
