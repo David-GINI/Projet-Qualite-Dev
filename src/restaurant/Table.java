@@ -1,4 +1,4 @@
-package table;
+package restaurant;
 
 import client.Client;
 

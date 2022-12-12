@@ -7,8 +7,6 @@ import employe.Cuisinier;
 import employe.Employe;
 import employe.Nettoyeur;
 import misc.Data;
-import table.Etat;
-import table.Table;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +71,7 @@ public class Restaurant {
                 listeCuisinier.add((Cuisinier) listeEmployes.get(i));
             }
         }
-        return listeCuisinier;
+        return listeCuisinier;//renvoit  la liste des cuisiniers a partir de la liste des gens employés
     }
     public ArrayList<Nettoyeur> getNettoyeur(){
         ArrayList<Nettoyeur> listeNettoyeur = new ArrayList<>();
@@ -82,6 +80,12 @@ public class Restaurant {
                 listeNettoyeur.add((Nettoyeur) listeEmployes.get(i));
             }
         }
-        return listeNettoyeur;
+        return listeNettoyeur; // renvoit  la liste des agents d'entretien a partir de la liste des gens employés
+    }
+    public void salir(){
+        etatProprete = this.etatProprete.salir();
+    }
+    public void nettoyer(){
+        etatProprete = this.etatProprete.nettoyer();
     }
 }

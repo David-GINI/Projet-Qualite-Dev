@@ -14,22 +14,23 @@ public class Thead_Handle_Client implements Runnable {
 
     @Override
     public void run() {
-        while(RESTO.ouvert){
+        while(RESTO.ouvert){ // Tant que le resto est ouvert
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1000); //On passe une seconde
             } catch (InterruptedException ignored) {
             }
-                ArrayList<Cuisinier> listeCuisinier = RESTO.getCuisinier();
-                for(int i = 0; i < listeCuisinier.size(); ++i){
-                        if(!RESTO.listeEmployes.get(i).occupe){
-                            RESTO.fileDAttente.get(0).setEstPris(true);
-                            RESTO.fileDAttente.get(0).Passer_Commander();
-                            listeCuisinier.get(i).setCommande(RESTO.fileDAttente.get(0).getCommande());
-                            ThreadProcessCommande t1 = new ThreadProcessCommande(listeCuisinier.get(i), RESTO);
+                ArrayList<Cuisinier> listeCuisinier = RESTO.getCuisinier(); // Liste de tous les cuisinier parmis les employés
+                for(int i = 0; i < listeCuisinier.size(); ++i){ // On parcourt tous les cuisiniers de la liste
+                        if(!listeCuisinier.get(i).occupe){ // Si un cuisinier est dispo
+                            RESTO.fileDAttente.get(0).setEstPris(true); // On prend le premier dans la file d'attente
+                            RESTO.fileDAttente.get(0).Passer_Commander(); // Ce dernier passe commande
+                            System.out.println(RESTO.fileDAttente.get(0).getNom() + " vient de passer sa commande !");
+                            listeCuisinier.get(i).setCommande(RESTO.fileDAttente.get(0).getCommande()); //On attribue cette commande au cuisinier qui l'a pris en charge
+                            ThreadProcessCommande t1 = new ThreadProcessCommande(listeCuisinier.get(i), RESTO); //On lance le thread de preparation de commande
                             new Thread(t1).start();
-                            RESTO.listeClientsPris.add(RESTO.fileDAttente.get(0));
-                            RESTO.fileDAttente.remove(0);
-                            RESTO.listeEmployes.get(i).occupe = true;
+                            System.out.println(RESTO.fileDAttente.get(0).getNom() + " viens d'être pris en charge par le cuisinier : " + listeCuisinier.get(i).nom);
+                            RESTO.fileDAttente.remove(0); // On le retire de la file d'attente
+                            RESTO.listeEmployes.get(i).occupe = true; //Le cuisinier est donc maintenant occupé
                             break;
                     }
                 }

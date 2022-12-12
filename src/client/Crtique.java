@@ -1,7 +1,7 @@
 package client;
 
 import restaurant.Restaurant;
-import table.Etat;
+import restaurant.Etat;
 
 public class Crtique extends Client implements Critique {
     private double note;

@@ -17,14 +17,15 @@ public class ThreadProcessCommande implements Runnable {
     public void run() {
         while(true) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1000); //On avance de 1 seconde
             } catch (InterruptedException ignored) {
             }
-            Commande commande = this.CUISINIER.getCommande();
-            commande.progress += this.CUISINIER.efficacite;
-            if (commande.progress == commande.temps) {
-                commande.isDone = true;
-                CUISINIER.occupe = false;
+            Commande commande = this.CUISINIER.getCommande(); // La commande a réalisé est celle attribué au cuisinier
+            commande.progress += this.CUISINIER.efficacite;// On augmente la progression actuel de  "efficacité" de l'agent d'entretien
+            if (commande.progress >= commande.temps) { // Si la progression atteint le temps de preparation de la commande
+                commande.isDone = true; //La commande est prête
+                System.out.println("le cuisiner "+CUISINIER.nom + " a terminé de préparer sa commander, il est de nouveau en attente de travail !");
+                CUISINIER.occupe = false; //Le cuisinier est disponible
                 break;
             }
         }
