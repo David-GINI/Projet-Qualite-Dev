@@ -1,11 +1,21 @@
 package employe;
 
+import commande.Commande;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Cuisinier extends Employe{
-
+    private Commande commande;
     public Cuisinier(String nom, int efficacite) {
         super(nom, efficacite);
+    }
+
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
     }
 
     public void prepareCommande(commande.Commande commande) {

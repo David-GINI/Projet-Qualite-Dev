@@ -3,6 +3,7 @@ import client.Client;
 import client.Preferences;
 import client.Status;
 import commande.Commande;
+import employe.Cuisinier;
 import employe.Employe;
 import misc.Data;
 import table.Etat;
@@ -14,9 +15,11 @@ import java.util.List;
 import java.util.Random;
 
 public class Restaurant {
+    public boolean ouvert;
     public Etat etatProprete;
     public ArrayList<Employe> listeEmployes = new ArrayList<Employe>();
     public ArrayList<Client> listeClients = new ArrayList<Client>();
+    public ArrayList<Client> listeClientsPris = new ArrayList<Client>();
     public ArrayList<Client> fileDAttente = new ArrayList<Client>();
     public ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
     public ArrayList<Table> listeTables = new ArrayList<Table>();
@@ -62,5 +65,14 @@ public class Restaurant {
 
         Client client = new Client(pourboire, nom, attente, Status.NORMAL, preferences, surPlace);
         listeClients.add(client);
+    }
+    public ArrayList<Cuisinier> getCuisinier(){
+        ArrayList<Cuisinier> listeCuisinier = new ArrayList<>();
+        for(int i = 0; i<this.listeEmployes.size(); ++i){
+            if(listeEmployes.get(i) instanceof Cuisinier){
+                listeCuisinier.add((Cuisinier) listeEmployes.get(i));
+            }
+        }
+        return listeCuisinier;
     }
 }

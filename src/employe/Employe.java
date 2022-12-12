@@ -20,6 +20,7 @@ public class Employe {
         this.efficacite = this.efficacite + (int)Math.ceil(0.02*montant);
     }
 
+
     @Override
     public String toString() {
         return "Employe{" +

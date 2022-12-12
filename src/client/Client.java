@@ -4,6 +4,7 @@ import commande.Commande;
 import commande.Condiments;
 import commande.Sauces;
 import commande.Viandes;
+import Thread.Thread_Attendre1;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -11,6 +12,7 @@ import java.util.Random;
 public   class  Client extends Thread {
     protected Commande commande; //Commande du client
     protected double pourboire;
+    protected boolean estPris;
 
     protected final Preferences preferences;
     protected String nom;
@@ -30,6 +32,18 @@ public   class  Client extends Thread {
         this.commande = null;
         this.surPlace =surPlace;
         this.parti = false;
+    }
+
+    public int getAttente_actuel() {
+        return attente_actuel;
+    }
+
+    public int getTemp_attente_max() {
+        return temp_attente_max;
+    }
+
+    public void setAttente_actuel(int attente_actuel) {
+        this.attente_actuel = attente_actuel;
     }
 
     public void Passer_Commander() { // Fonction qui randomize la création de la commande du client
@@ -120,12 +134,65 @@ public   class  Client extends Thread {
         this.commande = commandeClient;
     }
 
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public Preferences getPreferences() {
+        return preferences;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public void attendre(){
         Thread_Attendre1 t1 = new Thread_Attendre1(this);
         new Thread(t1).start();
-        Thread t2 = new Thread();
-        t2.start();
 
         }
 
+    public double getPourboire() {
+        return pourboire;
     }
+
+    public void setPourboire(double pourboire) {
+        this.pourboire = pourboire;
+    }
+
+    public boolean isEstPris() {
+        return estPris;
+    }
+
+    public void setEstPris(boolean estPris) {
+        this.estPris = estPris;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public boolean isParti() {
+        return parti;
+    }
+
+    public void setParti(boolean parti) {
+        this.parti = parti;
+    }
+
+    public boolean isSurPlace() {
+        return surPlace;
+    }
+
+    public void setSurPlace(boolean surPlace) {
+        this.surPlace = surPlace;
+    }
+}
