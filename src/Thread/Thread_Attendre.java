@@ -4,12 +4,12 @@ import client.Client;
 import restaurant.Restaurant;
 
 public class Thread_Attendre implements Runnable{
-    private final Client client;
-    private final Restaurant resto;
+    private final Client CLIENT;
+    private final Restaurant RESTO;
 
-    public Thread_Attendre(Client client, Restaurant resto) {
-        this.client = client;
-        this.resto = resto;
+    public Thread_Attendre(Client CLIENT, Restaurant RESTO) {
+        this.CLIENT = CLIENT;
+        this.RESTO = RESTO;
     }
 
     @Override
@@ -19,13 +19,13 @@ public class Thread_Attendre implements Runnable{
                 Thread.sleep(1000);
             } catch (InterruptedException ignored) {
             }
-            client.setAttente_actuel(client.getAttente_actuel() + 1);
-            if (client.isEstPris()) {
-                resto.listeClientsPris.add(this.client);
+            CLIENT.setAttente_actuel(CLIENT.getAttente_actuel() + 1);
+            if (CLIENT.isEstPris()) {
+                RESTO.listeClientsPris.add(this.CLIENT);
                 break;
             }
-            if (client.getAttente_actuel() == client.getTemp_attente_max()) {
-                client.setParti(true);
+            if (CLIENT.getAttente_actuel() == CLIENT.getTemp_attente_max()) {
+                CLIENT.setParti(true);
             }
 
         }

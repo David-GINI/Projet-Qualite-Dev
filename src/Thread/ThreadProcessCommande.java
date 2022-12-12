@@ -2,16 +2,15 @@ package Thread;
 
 import commande.Commande;
 import employe.Cuisinier;
-import employe.Employe;
 import restaurant.Restaurant;
 
 public class ThreadProcessCommande implements Runnable {
-    private final Cuisinier cuisinier;
-    private final Restaurant restaurant;
+    private final Cuisinier CUISINIER;
+    private final Restaurant RESTO;
 
-    public ThreadProcessCommande(Cuisinier cuisinier, Restaurant restaurant) {
-        this.cuisinier = cuisinier;
-        this.restaurant = restaurant;
+    public ThreadProcessCommande(Cuisinier CUISINIER, Restaurant RESTO) {
+        this.CUISINIER = CUISINIER;
+        this.RESTO = RESTO;
     }
 
     @Override
@@ -21,11 +20,11 @@ public class ThreadProcessCommande implements Runnable {
                 Thread.sleep(1000);
             } catch (InterruptedException ignored) {
             }
-            Commande commande = this.cuisinier.getCommande();
-            commande.progress += this.cuisinier.efficacite;
+            Commande commande = this.CUISINIER.getCommande();
+            commande.progress += this.CUISINIER.efficacite;
             if (commande.progress == commande.temps) {
                 commande.isDone = true;
-                cuisinier.occupe = false;
+                CUISINIER.occupe = false;
                 break;
             }
         }

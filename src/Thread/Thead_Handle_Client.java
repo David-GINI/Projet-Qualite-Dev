@@ -6,30 +6,30 @@ import restaurant.Restaurant;
 import java.util.ArrayList;
 
 public class Thead_Handle_Client implements Runnable {
-    private final Restaurant resto;
+    private final Restaurant RESTO;
 
-    public Thead_Handle_Client(Restaurant resto) {
-        this.resto = resto;
+    public Thead_Handle_Client(Restaurant RESTO) {
+        this.RESTO = RESTO;
     }
 
     @Override
     public void run() {
-        while(resto.ouvert){
+        while(RESTO.ouvert){
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ignored) {
             }
-                ArrayList<Cuisinier> listeCuisinier = resto.getCuisinier();
+                ArrayList<Cuisinier> listeCuisinier = RESTO.getCuisinier();
                 for(int i = 0; i < listeCuisinier.size(); ++i){
-                        if(!resto.listeEmployes.get(i).occupe){
-                            resto.fileDAttente.get(0).setEstPris(true);
-                            resto.fileDAttente.get(0).Passer_Commander();
-                            listeCuisinier.get(i).setCommande(resto.fileDAttente.get(0).getCommande());
-                            ThreadProcessCommande t1 = new ThreadProcessCommande(listeCuisinier.get(i), resto);
+                        if(!RESTO.listeEmployes.get(i).occupe){
+                            RESTO.fileDAttente.get(0).setEstPris(true);
+                            RESTO.fileDAttente.get(0).Passer_Commander();
+                            listeCuisinier.get(i).setCommande(RESTO.fileDAttente.get(0).getCommande());
+                            ThreadProcessCommande t1 = new ThreadProcessCommande(listeCuisinier.get(i), RESTO);
                             new Thread(t1).start();
-                            resto.listeClientsPris.add(resto.fileDAttente.get(0));
-                            resto.fileDAttente.remove(0);
-                            resto.listeEmployes.get(i).occupe = true;
+                            RESTO.listeClientsPris.add(RESTO.fileDAttente.get(0));
+                            RESTO.fileDAttente.remove(0);
+                            RESTO.listeEmployes.get(i).occupe = true;
                             break;
                     }
                 }
