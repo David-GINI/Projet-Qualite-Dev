@@ -1,17 +1,18 @@
 package journee;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Journee {
     public int obj_revenus;
     public int revenus;
 
     public Jour jour;
-    public String heure_open = "11h";
-    public String heure_close = "00h";
-    public String heure;
+    public int heure_open = 11;
+    public int heure_close = 00;
+    public int heure = 0;
 
 
-    public Journee(int obj_revenus, int revenus, Jour jour, String heure_open, String heure_close, String heure) {
+    public Journee(int obj_revenus, int revenus, Jour jour, int heure_open, int heure_close, int heure) {
         this.obj_revenus = obj_revenus;
         this.revenus = revenus;
         this.jour = jour;
@@ -44,27 +45,27 @@ public class Journee {
         this.jour = jour;
     }
 
-    public String getHeure_open() {
+    public int getHeure_open() {
         return heure_open;
     }
 
-    public void setHeure_open(String heure_open) {
+    public void setHeure_open(int heure_open) {
         this.heure_open = heure_open;
     }
 
-    public String getHeure_close() {
+    public int getHeure_close() {
         return heure_close;
     }
 
-    public void setHeure_close(String heure_close) {
+    public void setHeure_close(int heure_close) {
         this.heure_close = heure_close;
     }
 
-    public String getHeure() {
+    public int getHeure() {
         return heure;
     }
 
-    public void setHeure(String heure) {
+    public void setHeure(int heure) {
         this.heure = heure;
     }
 
@@ -77,12 +78,30 @@ public class Journee {
         }
     }
 
+    public void horloge(){
+     while(true){
+         this.heure = 0;
+         while(this.heure <= 24){
+             this.heure += 1;
+         }
+     }
+    }
 
 
     public void fermeture(){
-        Random hour = new Random();
         if(heure == heure_close){
-            System.out.println("Mama's Burgeria est fermé revenez demain !");
+            Scanner jourSuivant = new Scanner(System.in);
+            System.out.println("Mama's Burgeria est fermé, revenez demain ?");
+            String choix = jourSuivant.nextLine();
+            if(choix == "oui"){
+                LUNDI ("Lundi"){
+
+                }
+            }
+            else if (choix == "non") {
+                System.out.println("Merci d'avoir joué !");
+            }
+
         }
     }
 
