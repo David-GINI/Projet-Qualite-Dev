@@ -10,7 +10,7 @@ import restaurant.Restaurant;
 import java.util.ArrayList;
 import java.util.Random;
 
-public   class  Client extends Thread {
+public   class Client extends Thread {
     public final int  TEMPS_MANGER = 50;
     protected Restaurant resto;
     protected boolean attend = false;
@@ -18,7 +18,7 @@ public   class  Client extends Thread {
     protected double pourboire;
     protected boolean estPris;
 
-    protected final Preferences preferences;
+    protected final Preferences PREFERENCES;
     protected String nom;
     protected final int temp_attente_max; // Si le temps est dépassé il quitte le restaurant
     protected int attente_actuel = 0;
@@ -27,12 +27,12 @@ public   class  Client extends Thread {
     protected boolean surPlace; //true = sur place, false = à emporter
 
 
-    public Client(Restaurant resto, double pourboire, String nom, int temp_attente_max, Status status, Preferences preferences,boolean surPlace) {
+    public Client(Restaurant resto, double pourboire, String nom, int temp_attente_max, Status status, Preferences PREFERENCES, boolean surPlace) {
         this.resto = resto;
         this.status = status;
         this.temp_attente_max = temp_attente_max;
         this.pourboire = pourboire;
-        this.preferences = preferences;
+        this.PREFERENCES = PREFERENCES;
         this.nom = nom;
         this.commande = null;
         this.surPlace =surPlace;
@@ -56,7 +56,7 @@ public   class  Client extends Thread {
         Viandes viandeCommande = null;
         Random randomCommande = new Random(); // nombre aléatoire pour choisir les ingredients de la commande aléatoirement
         int nombreAleatoireViande = randomCommande.nextInt(100); // Nombre aléatoire entre 0 et 100
-        switch (this.preferences) {
+        switch (this.PREFERENCES) {
             case VEGETARIEN: {
                 viandeCommande = Viandes.VEGETARIEN; // On lui attribut la viande végé
             }
@@ -143,8 +143,8 @@ public   class  Client extends Thread {
         return commande;
     }
 
-    public Preferences getPreferences() {
-        return preferences;
+    public Preferences getPREFERENCES() {
+        return PREFERENCES;
     }
 
     public String getNom() {
@@ -156,6 +156,7 @@ public   class  Client extends Thread {
     }
 
     public void attendre(){
+        // On lance le thread d'attente pour le client
         Thread_Attendre t1 = new Thread_Attendre(this, resto);
         new Thread(t1).start();
 

@@ -1,10 +1,11 @@
 package employe;
 import restaurant.Restaurant;
-import table.Etat;
-import table.Table;
+import restaurant.Etat;
+import restaurant.Table;
 
 
 public class Nettoyeur extends Employe {
+    public Table tableToClean;
     public Nettoyeur(String nom, int efficacite) {
         super(nom, efficacite);
     }

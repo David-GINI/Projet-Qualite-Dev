@@ -1,4 +1,4 @@
-package table;
+package restaurant;
 
 public enum Etat {
     PROPRE("Propre") {
