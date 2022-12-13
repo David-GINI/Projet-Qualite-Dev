@@ -93,12 +93,10 @@ public class Journee {
             Scanner jourSuivant = new Scanner(System.in);
             System.out.println("Mama's Burgeria est fermé, revenez demain ?");
             String choix = jourSuivant.nextLine();
-            if(choix == "oui"){
-                LUNDI ("Lundi"){
-
-                }
+            if(choix == "Oui"){
+                this.nextDay();
             }
-            else if (choix == "non") {
+            else if (choix == "Non") {
                 System.out.println("Merci d'avoir joué !");
             }
 
@@ -110,6 +108,9 @@ public class Journee {
         if (heure == heure_open){
             System.out.println("Bienvenue chez Mama's Burgeria");
         }
+    }
+    public void nextDay(){
+        this.jour = this.jour.nextDay();
     }
 
 }

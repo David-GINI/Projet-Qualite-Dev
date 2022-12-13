@@ -63,6 +63,7 @@ public class Restaurant {
 
         Client client = new Client(this, pourboire, nom, attente, Status.NORMAL, preferences, surPlace);
         listeClients.add(client);
+        fileDAttente.add(client);
     }
     public ArrayList<Cuisinier> getCuisinier(){
         ArrayList<Cuisinier> listeCuisinier = new ArrayList<>();

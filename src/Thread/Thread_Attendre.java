@@ -19,6 +19,7 @@ public class Thread_Attendre implements Runnable{
                 Thread.sleep(1000);  //On avance de une seconde
             } catch (InterruptedException ignored) {
             }
+            System.out.println(CLIENT.getNom() + " attend !");
             CLIENT.setAttente_actuel(CLIENT.getAttente_actuel() + 1); // On augmente son temps d'attente actuel
             if (CLIENT.isEstPris()) { //Si il est pris par un cuisinier
                 RESTO.listeClientsPris.add(this.CLIENT); // On le met dans la liste des clients pris
