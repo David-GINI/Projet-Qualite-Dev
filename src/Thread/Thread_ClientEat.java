@@ -27,8 +27,7 @@ public class Thread_ClientEat implements Runnable{
             if(temps_manger == CLIENT.TEMPS_MANGER){ // Si il a fini de manger
                 CLIENT.setParti(true); // Il part
                 System.out.println(CLIENT.getNom() + " a terminer son plat il va payer puis partir");
-                RESTO.caisse += CLIENT.getCommande().prix;
-                RESTO.caisse += CLIENT.getPourboire(); // il paye et cela s'ajoute dans la caisse du restaurant
+                RESTO.ajouterArgent(CLIENT.getPourboire() + CLIENT.getCommande().prix); // il paye et cela s'ajoute dans la caisse du restaurant
                 System.out.println(CLIENT.getPourboire() + CLIENT.getCommande().prix + " euros viennent d'être ajouté à la caisse");
                 if(CLIENT instanceof Critique){ // Si c'était un critique
                     ((Critique) CLIENT).noter(RESTO); // Il note le resto

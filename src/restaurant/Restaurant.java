@@ -24,6 +24,7 @@ public class Restaurant {
     public List<Double> listeNotes = new ArrayList<Double>();
     public double note;
     public double caisse;
+    public double revenuPerDay;
     public Data donnees;
 
     public Restaurant(Etat etatProprete, float caisse) {
@@ -82,6 +83,14 @@ public class Restaurant {
             }
         }
         return listeNettoyeur; // renvoit  la liste des agents d'entretien a partir de la liste des gens employés
+    }
+    public void ajouterArgent(double argent){
+        this.revenuPerDay += argent;
+        this.caisse += argent;
+    }
+    public void vider(){
+        this.fileDAttente.clear();
+        this.listeClientsPris.clear();
     }
     public void salir(){
         etatProprete = this.etatProprete.salir();

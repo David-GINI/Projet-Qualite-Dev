@@ -33,8 +33,7 @@ public class Thread_Handle_SurPlace implements Runnable{
                                 if (RESTO.listeClientsPris.get(i).getCommande().isDone) { //Si leurs commandes sont prêtes
                                     RESTO.listeClientsPris.get(i).setParti(true); // Ils partent
                                     System.out.println(RESTO.listeClientsPris.get(i).getNom() + " a eu sa commande a emporté, il va payer puis quitter le restaurant ! ");
-                                    RESTO.caisse += RESTO.listeClientsPris.get(i).getCommande().prix; // ils payent et cela s'ajoute à la caisse du restaurant
-                                    RESTO.caisse += RESTO.listeClientsPris.get(i).getPourboire();
+                                    RESTO.ajouterArgent(RESTO.listeClientsPris.get(i).getPourboire() + RESTO.listeClientsPris.get(i).getCommande().prix); // il paye et cela s'ajoute dans la caisse du restaurant
                                     System.out.println(RESTO.listeClientsPris.get(i).getPourboire() + RESTO.listeClientsPris.get(i).getCommande().prix + " euros viennent d'être ajouté à la caisse");
                                     RESTO.listeClientsPris.remove(i); // On les retire de la liste des gens pris
                                 }

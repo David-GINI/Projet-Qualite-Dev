@@ -3,8 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Journee {
-    public int obj_revenus;
-    public int revenus;
+    public double obj_revenus;
 
     public Jour jour;
     public int heure_open = 11;
@@ -12,30 +11,22 @@ public class Journee {
     public int heure = 0;
 
 
-    public Journee(int obj_revenus, int revenus, Jour jour, int heure_open, int heure_close, int heure) {
+    public Journee(double obj_revenus, Jour jour, int heure_open, int heure_close, int heure) {
         this.obj_revenus = obj_revenus;
-        this.revenus = revenus;
         this.jour = jour;
         this.heure_open = heure_open;
         this.heure_close = heure_close;
         this.heure = heure;
     }
 
-    public int getObj_revenus() {
+    public double getObj_revenus() {
         return obj_revenus;
     }
 
-    public void setObj_revenus(int obj_revenus) {
+    public void setObj_revenus(double obj_revenus) {
         this.obj_revenus = obj_revenus;
     }
 
-    public int getRevenus() {
-        return revenus;
-    }
-
-    public void setRevenus(int revenus) {
-        this.revenus = revenus;
-    }
 
     public Jour getJour() {
         return jour;
@@ -69,7 +60,7 @@ public class Journee {
         this.heure = heure;
     }
 
-    public void revenusEgalObjectif(){ //on vérifie si les revenus de la journée sont égales à l'objectif fixé
+    public void revenusEgalObjectif(double revenus){ //on vérifie si les revenus de la journée sont égales à l'objectif fixé
         if(revenus >= obj_revenus){ //objectif atteint
             System.out.println(revenus + "€\n" + obj_revenus + "€\n" + "Ce fut une bonne journée !");
         }
@@ -78,37 +69,6 @@ public class Journee {
         }
     }
 
-    public void horloge(){
-     while(true){
-         this.heure = 0;
-         while(this.heure <= 24){
-             this.heure += 1;
-         }
-     }
-    }
-
-
-    public void fermeture(){
-        if(heure == heure_close){
-            Scanner jourSuivant = new Scanner(System.in);
-            System.out.println("Mama's Burgeria est fermé, revenez demain ?");
-            String choix = jourSuivant.nextLine();
-            if(choix == "Oui"){
-                this.nextDay();
-            }
-            else if (choix == "Non") {
-                System.out.println("Merci d'avoir joué !");
-            }
-
-        }
-    }
-
-    public void ouverture(){
-
-        if (heure == heure_open){
-            System.out.println("Bienvenue chez Mama's Burgeria");
-        }
-    }
     public void nextDay(){
         this.jour = this.jour.nextDay();
     }
