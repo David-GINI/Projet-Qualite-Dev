@@ -6,9 +6,8 @@ import employe.Nettoyeur;
 import journee.Jour;
 import journee.Journee;
 import misc.Data;
-import restaurant.Etat;
 import restaurant.Restaurant;
-import Thread.ThreadHandleOpen;
+import thread.ThreadHandleOpen;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -233,7 +232,7 @@ public class MainSimu {
         Journee notreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
         restaurant.genereClients(3);
         restaurant.genereEmployes(16);
-        System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
+        System.out.println("Début de la journée. Voici les employés qui ont postulé à " + restaurant.nom + ":");
         System.out.println();
         pickEmployes(restaurant);
         System.out.println("[RÉCAPITULATIF STAFF]");

@@ -1,4 +1,4 @@
-package Thread;
+package thread;
 
 import commande.Commande;
 import employe.Cuisinier;

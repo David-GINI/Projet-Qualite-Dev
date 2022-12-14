@@ -4,7 +4,7 @@ import commande.Commande;
 import commande.Condiments;
 import commande.Sauces;
 import commande.Viandes;
-import Thread.ThreadAttendre;
+import thread.ThreadAttendre;
 import restaurant.Restaurant;
 
 import java.util.ArrayList;
