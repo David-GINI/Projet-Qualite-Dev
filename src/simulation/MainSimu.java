@@ -52,6 +52,58 @@ public class MainSimu {
             numEmploye += 1;
             System.out.println(numEmploye + ". " + quatreEmployes.get(i).nom + " | Efficacité: " + quatreEmployes.get(i).efficacite);
         }
+
+    }
+
+    static void trierCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
+
+        for (int i = 1; i < listeCuisiniers.size(); ++i) {
+            int j = i;
+
+            while (j > 0 && listeCuisiniers.get(j-1).efficacite < listeCuisiniers.get(j).efficacite) {
+                Cuisinier k = listeCuisiniers.get(j);
+                listeCuisiniers.set(j, listeCuisiniers.get(j-1));
+                listeCuisiniers.set(j-1, k);
+                j = j-1;
+            }
+        }
+    }
+
+    static void afficherCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
+        System.out.println("Cuisiniers: ");
+        System.out.println();
+        int numEmploye = 0;
+        for (int i = 0; i < listeCuisiniers.size(); ++i) {
+            numEmploye += 1;
+            System.out.println(numEmploye + ". " + listeCuisiniers.get(i).nom + " | Efficacité: " + listeCuisiniers.get(i).efficacite + " | Salaire: " + listeCuisiniers.get(i).salaire + "€");
+        }
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+    }
+
+    static void trierNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
+
+        for (int i = 1; i < listeNettoyeurs.size(); ++i) {
+            int j = i;
+
+            while (j > 0 && listeNettoyeurs.get(j-1).efficacite < listeNettoyeurs.get(j).efficacite) {
+                Nettoyeur k = listeNettoyeurs.get(j);
+                listeNettoyeurs.set(j, listeNettoyeurs.get(j-1));
+                listeNettoyeurs.set(j-1, k);
+                j = j-1;
+            }
+        }
+    }
+
+    static void afficherNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
+        System.out.println("Nettoyeurs: ");
+        System.out.println();
+        int numEmploye = 0;
+        for (int i = 0; i < listeNettoyeurs.size(); ++i) {
+            numEmploye += 1;
+            System.out.println(numEmploye + ". " + listeNettoyeurs.get(i).nom + " | Efficacité: " + listeNettoyeurs.get(i).efficacite + " | Salaire: " + listeNettoyeurs.get(i).salaire + "€");
+        }
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        System.out.println();
     }
 
     static void embaucherEmploye(Restaurant restaurant, ArrayList<Employe> employesDispo, int numEmploye) {
@@ -88,7 +140,7 @@ public class MainSimu {
         restaurant.listeEmployes.clear();
         restaurant.genereEmployes(16);
         ArrayList<Employe> employesDispo = new ArrayList<>();
-        System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria.");
+        System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
         System.out.println();
         int numRerolls = 0;
         boolean isTermine = false;
@@ -101,8 +153,8 @@ public class MainSimu {
 
             afficheQueueEmploye(employesDispo);
 
-            System.out.println("Rerolls: " + numRerolls + "/3.");
             System.out.println();
+            System.out.println("Le salaire de chacun de vos employés vous sera débité tous les mois.");
             System.out.println("Qui voulez-vous embaucher?");
             if (!employesDispo.get(0).nom.equals("EMBAUCHÉ")) {
                 System.out.println("(1) " + employesDispo.get(0).nom);
@@ -118,7 +170,7 @@ public class MainSimu {
             }
             System.out.println();
             if (numRerolls < 3) {
-                System.out.println("(R) Reroll");
+                System.out.println("(R) Reroll (" + (3-numRerolls) + "/3)");
             }
             System.out.println("(T) Terminer");
 
@@ -158,16 +210,18 @@ public class MainSimu {
         Restaurant NotreRestaurant = new Restaurant(Etat.PROPRE, 5000);
         Journee NotreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
         Scanner scan = new Scanner(System.in);
-        System.out.println("Voulez vous commencer ?");
-        answer_user = scan.nextLine();
         NotreRestaurant.genereClients(3);
         NotreRestaurant.genereEmployes(16);
         pickEmployes(NotreRestaurant);
-        System.out.println(NotreRestaurant.listeCuisiniers);
-        System.out.println(NotreRestaurant.listeNettoyeurs);
+        System.out.println("[RÉCAPITULATIF STAFF]");
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        trierCuisiniers(NotreRestaurant.listeCuisiniers);
+        afficherCuisiniers(NotreRestaurant.listeCuisiniers);
+        trierNettoyeurs(NotreRestaurant.listeNettoyeurs);
+        afficherNettoyeurs(NotreRestaurant.listeNettoyeurs);
+        System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
+        answer_user = scan.nextLine();
         ThreadHandleOpen t1 = new ThreadHandleOpen(NotreSimu, NotreRestaurant);
         new Thread(t1).start();
-
-
         }
     }
