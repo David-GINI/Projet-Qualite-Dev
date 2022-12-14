@@ -220,7 +220,7 @@ public class MainSimu {
         Cuisinier cuisinierDepart = new Cuisinier(userAnswer, 12);
         System.out.println("Votre autre ami/e assûre la propreté du local. Comment s'appelle-t-il/elle?");
         userAnswer = scan.nextLine();
-        Nettoyeur nettoyeurDepart = new Nettoyeur(donnees.getRandomPrenom(), 12);
+        Nettoyeur nettoyeurDepart = new Nettoyeur(userAnswer, 12);
         System.out.println("Vous êtes le manager. Choisissez un nom pour le restaurant :");
         userAnswer = scan.nextLine();
         Restaurant restaurant = new Restaurant(userAnswer);
