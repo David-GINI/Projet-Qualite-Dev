@@ -29,9 +29,13 @@ public class Restaurant {
     public double revenuPerDay;
     public Data donnees;
 
-    public Restaurant(Etat etatProprete, float caisse) {
+    public String nom;
+
+    public Restaurant(String nom) {
+
+        this.nom = nom;
         this.etatProprete = Etat.PROPRE;
-        this.caisse = 0;
+        this.caisse = 5000;
         this.donnees = new Data();
     }
     public void actualiserNote(){
