@@ -25,28 +25,27 @@ public class ThreadHandleOpen implements Runnable{
             }
 
             JOURNEE.heure +=1;
-            if(JOURNEE.heure == JOURNEE.heure_close){
+            if(JOURNEE.heure == JOURNEE.heureClose){
                 Scanner jourSuivant = new Scanner(System.in);
 
-                JOURNEE.revenusEgalObjectif(RESTO.revenuPerDay);
+                JOURNEE.revenuEgalObjectif(RESTO.revenuParJour);
                 System.out.println("Mama's Burgeria est fermé ! ");
                 System.out.println("Voulez vous passer à la journée suivante ?");
                 String choix = jourSuivant.nextLine();
                 RESTO.vider();
                 RESTO.ouvert = false;
                 if(Objects.equals(choix, "Oui")){
-                    RESTO.revenuPerDay = 0;
+                    RESTO.revenuParJour = 0;
                     JOURNEE.nextDay();
-                    JOURNEE.setHeure(JOURNEE.heure_open);
-                    System.out.println("Bienvenue chez Mama's Burgeria, nous sommes " + JOURNEE.jour);
+                    JOURNEE.setHeure(JOURNEE.heureOpen);
+                    System.out.println("Bienvenue chez " + RESTO.nom + ", nous sommes " + JOURNEE.jour);
                     Scanner newObjRevenu = new Scanner(System.in);
                     System.out.println("Quel est votre objectif de revenus aujourd'hui patron ?");
-                    JOURNEE.setObj_revenus(newObjRevenu.nextDouble());
+                    JOURNEE.setObjectifRevenu(newObjRevenu.nextDouble());
                     RESTO.ouvert = true;
                 }
                 else if (Objects.equals(choix, "Non")) {
                     System.out.println("Merci d'avoir joué !");
-
                     break;
                 }
 

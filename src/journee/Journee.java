@@ -1,30 +1,28 @@
 package journee;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Journee {
-    public double obj_revenus;
+    public double objectifRevenu;
 
     public Jour jour;
-    public int heure_open = 11;
-    public int heure_close = 00;
+    public int heureOpen = 11;
+    public int heureClose = 00;
     public int heure = 0;
 
 
-    public Journee(double obj_revenus, Jour jour, int heure_open, int heure_close, int heure) {
-        this.obj_revenus = obj_revenus;
+    public Journee(double objectifRevenu, Jour jour, int heureOpen, int heureClose, int heure) {
+        this.objectifRevenu = objectifRevenu;
         this.jour = jour;
-        this.heure_open = heure_open;
-        this.heure_close = heure_close;
+        this.heureOpen = heureOpen;
+        this.heureClose = heureClose;
         this.heure = heure;
     }
 
-    public double getObj_revenus() {
-        return obj_revenus;
+    public double getObjectifRevenu() {
+        return objectifRevenu;
     }
 
-    public void setObj_revenus(double obj_revenus) {
-        this.obj_revenus = obj_revenus;
+    public void setObjectifRevenu(double objectifRevenu) {
+        this.objectifRevenu = objectifRevenu;
     }
 
 
@@ -36,20 +34,20 @@ public class Journee {
         this.jour = jour;
     }
 
-    public int getHeure_open() {
-        return heure_open;
+    public int getHeureOpen() {
+        return heureOpen;
     }
 
-    public void setHeure_open(int heure_open) {
-        this.heure_open = heure_open;
+    public void setHeureOpen(int heureOpen) {
+        this.heureOpen = heureOpen;
     }
 
-    public int getHeure_close() {
-        return heure_close;
+    public int getHeureClose() {
+        return heureClose;
     }
 
-    public void setHeure_close(int heure_close) {
-        this.heure_close = heure_close;
+    public void setHeureClose(int heureClose) {
+        this.heureClose = heureClose;
     }
 
     public int getHeure() {
@@ -60,12 +58,12 @@ public class Journee {
         this.heure = heure;
     }
 
-    public void revenusEgalObjectif(double revenus){ //on vérifie si les revenus de la journée sont égales à l'objectif fixé
-        if(revenus >= obj_revenus){ //objectif atteint
-            System.out.println(revenus + "€\n" + obj_revenus + "€\n" + "Ce fut une bonne journée !");
+    public void revenuEgalObjectif(double revenus){ //on vérifie si les revenus de la journée sont égales à l'objectif fixé
+        if(revenus >= objectifRevenu){ //objectif atteint
+            System.out.println(revenus + "€\n" + objectifRevenu + "€\n" + "Ce fut une bonne journée !");
         }
         else { //objectif non atteint
-            System.out.println(revenus + "€\n" + obj_revenus +  "€\n" + "Cette journée n'était pas très bonne!");
+            System.out.println(revenus + "€\n" + objectifRevenu +  "€\n" + "Cette journée n'était pas très bonne!");
         }
     }
 

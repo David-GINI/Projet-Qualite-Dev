@@ -26,7 +26,7 @@ public class Restaurant {
     public List<Double> listeNotes = new ArrayList<Double>();
     public double note;
     public double caisse;
-    public double revenuPerDay;
+    public double revenuParJour;
     public Data donnees;
 
     public String nom;
@@ -93,7 +93,9 @@ public class Restaurant {
         }
     }
 
-    public ArrayList<Cuisinier> getCuisinier(){
+    //Fonctions dépréciées -> Utiliser listeCuisinier et listeNettoyeur a la place
+
+    /*public ArrayList<Cuisinier> getCuisinier(){
         ArrayList<Cuisinier> listeCuisinier = new ArrayList<>();
         for(int i = 0; i<this.listeEmployes.size(); ++i){
             if(listeEmployes.get(i) instanceof Cuisinier){
@@ -110,9 +112,10 @@ public class Restaurant {
             }
         }
         return listeNettoyeur; // renvoit  la liste des agents d'entretien a partir de la liste des gens employés
-    }
+    }*/
+
     public void ajouterArgent(double argent){
-        this.revenuPerDay += argent;
+        this.revenuParJour += argent;
         this.caisse += argent;
     }
     public void vider(){

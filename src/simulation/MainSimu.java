@@ -216,36 +216,36 @@ public class MainSimu {
 
         System.out.println("Vous et deux de vos collègues avez fondé un restaurant à hamburgers.");
         System.out.println("Votre premier ami/e est le cuistot du groupe. Comment s'appelle-t-il/elle?");
-        String answer_user = scan.nextLine();
-        Cuisinier cuisinierDepart = new Cuisinier(answer_user, 12);
+        String userAnswer = scan.nextLine();
+        Cuisinier cuisinierDepart = new Cuisinier(userAnswer, 12);
         System.out.println("Votre autre ami/e assûre la propreté du local. Comment s'appelle-t-il/elle?");
-        answer_user = scan.nextLine();
+        userAnswer = scan.nextLine();
         Nettoyeur nettoyeurDepart = new Nettoyeur(donnees.getRandomPrenom(), 12);
         System.out.println("Vous êtes le manager. Choisissez un nom pour le restaurant :");
-        answer_user = scan.nextLine();
-        Restaurant NotreRestaurant = new Restaurant(answer_user);
-        NotreRestaurant.listeCuisiniers.add(cuisinierDepart);
-        NotreRestaurant.listeNettoyeurs.add(nettoyeurDepart);
-        System.out.println(NotreRestaurant.nom + " ouvre ses portes!");
+        userAnswer = scan.nextLine();
+        Restaurant restaurant = new Restaurant(userAnswer);
+        restaurant.listeCuisiniers.add(cuisinierDepart);
+        restaurant.listeNettoyeurs.add(nettoyeurDepart);
+        System.out.println(restaurant.nom + " ouvre ses portes!");
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         System.out.println();
 
-        Journee NotreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
-        NotreRestaurant.genereClients(3);
-        NotreRestaurant.genereEmployes(16);
+        Journee notreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
+        restaurant.genereClients(3);
+        restaurant.genereEmployes(16);
         System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
         System.out.println();
-        pickEmployes(NotreRestaurant);
+        pickEmployes(restaurant);
         System.out.println("[RÉCAPITULATIF STAFF]");
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-        trierCuisiniers(NotreRestaurant.listeCuisiniers);
-        afficherCuisiniers(NotreRestaurant.listeCuisiniers);
-        trierNettoyeurs(NotreRestaurant.listeNettoyeurs);
-        afficherNettoyeurs(NotreRestaurant.listeNettoyeurs);
+        trierCuisiniers(restaurant.listeCuisiniers);
+        afficherCuisiniers(restaurant.listeCuisiniers);
+        trierNettoyeurs(restaurant.listeNettoyeurs);
+        afficherNettoyeurs(restaurant.listeNettoyeurs);
 
         System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
-        answer_user = scan.nextLine();
-        ThreadHandleOpen t1 = new ThreadHandleOpen(NotreSimu, NotreRestaurant);
+        userAnswer = scan.nextLine();
+        ThreadHandleOpen t1 = new ThreadHandleOpen(notreSimu, restaurant);
         new Thread(t1).start();
         }
     }

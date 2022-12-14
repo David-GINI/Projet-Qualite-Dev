@@ -6,17 +6,17 @@ import restaurant.Etat;
 
 import java.util.ArrayList;
 
-public class Thread_Handle_Etat implements Runnable {
+public class ThreadHandleEtat implements Runnable {
     private final Restaurant RESTO;
 
-    public Thread_Handle_Etat(Restaurant RESTO) {
+    public ThreadHandleEtat(Restaurant RESTO) {
         this.RESTO = RESTO;
     }
 
     @Override
     public void run() {
         while (RESTO.ouvert) { // Tant que le resto est ouvert
-            ArrayList<Nettoyeur> listeNettoyeur = RESTO.getNettoyeur(); //Liste de tous les agents d'entretien dans tous les employés
+            ArrayList<Nettoyeur> listeNettoyeur = RESTO.listeNettoyeurs; //Liste de tous les agents d'entretien dans tous les employés
             for (Nettoyeur nettoyeur : listeNettoyeur) { // On parcourt cette liste
                 for (int j = 0; j < RESTO.listeTables.size(); ++j) { //On parcourt la liste des tables
                     if (RESTO.listeTables.get(j).etat == Etat.SALE || RESTO.listeTables.get(j).etat == Etat.CORRECT) { // Si une table n'est pas propre

@@ -4,7 +4,7 @@ import commande.Commande;
 import commande.Condiments;
 import commande.Sauces;
 import commande.Viandes;
-import Thread.Thread_Attendre;
+import Thread.ThreadAttendre;
 import restaurant.Restaurant;
 
 import java.util.ArrayList;
@@ -20,17 +20,17 @@ public   class Client extends Thread {
 
     protected final Preferences PREFERENCES;
     protected String nom;
-    protected final int temp_attente_max; // Si le temps est dépassé il quitte le restaurant
-    protected int attente_actuel = 0;
+    protected final int tempsAttenteMax; // Si le temps est dépassé il quitte le restaurant
+    protected int attenteActuelle = 0;
     protected Status status; //client.Client habitué ou non si oui il aura toujours la meme commande
     protected boolean parti;
     protected boolean surPlace; //true = sur place, false = à emporter
 
 
-    public Client(Restaurant resto, double pourboire, String nom, int temp_attente_max, Status status, Preferences PREFERENCES, boolean surPlace) {
+    public Client(Restaurant resto, double pourboire, String nom, int tempsAttenteMax, Status status, Preferences PREFERENCES, boolean surPlace) {
         this.resto = resto;
         this.status = status;
-        this.temp_attente_max = temp_attente_max;
+        this.tempsAttenteMax = tempsAttenteMax;
         this.pourboire = pourboire;
         this.PREFERENCES = PREFERENCES;
         this.nom = nom;
@@ -39,19 +39,19 @@ public   class Client extends Thread {
         this.parti = false;
     }
 
-    public int getAttente_actuel() {
-        return attente_actuel;
+    public int getAttenteActuelle() {
+        return attenteActuelle;
     }
 
-    public int getTemp_attente_max() {
-        return temp_attente_max;
+    public int getTempsAttenteMax() {
+        return tempsAttenteMax;
     }
 
-    public void setAttente_actuel(int attente_actuel) {
-        this.attente_actuel = attente_actuel;
+    public void setAttenteActuelle(int attenteActuelle) {
+        this.attenteActuelle = attenteActuelle;
     }
 
-    public void Passer_Commander() { // Fonction qui randomize la création de la commande du client
+    public void passerCommande() { // Fonction qui randomize la création de la commande du client
         // On s'occupe de la viande
         Viandes viandeCommande = null;
         Random randomCommande = new Random(); // nombre aléatoire pour choisir les ingredients de la commande aléatoirement
@@ -135,7 +135,7 @@ public   class Client extends Thread {
             sauceCommande = Sauces.BIGGY;
         }
 
-        Commande commandeClient = new Commande(viandeCommande,listeCondiments,sauceCommande,this.surPlace);
+        Commande commandeClient = new Commande(viandeCommande, listeCondiments, sauceCommande, this.surPlace);
         this.commande = commandeClient;
     }
 
@@ -157,7 +157,7 @@ public   class Client extends Thread {
 
     public void attendre(){
         // On lance le thread d'attente pour le client
-        Thread_Attendre t1 = new Thread_Attendre(this, resto);
+        ThreadAttendre t1 = new ThreadAttendre(this, resto);
         new Thread(t1).start();
 
         }

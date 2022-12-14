@@ -18,7 +18,7 @@ public class Cuisinier extends Employe{
         this.commande = commande;
     }
 
-    public void prepareCommande(commande.Commande commande) {
+    public void prepareCommande(Commande commande) {
         commande.progress = commande.progress + 2 * this.efficacite;
         this.energie = this.energie - ThreadLocalRandom.current().nextInt(5, 16);
     }

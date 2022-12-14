@@ -9,7 +9,7 @@ public class Commande {
     public Sauces sauce; //Sauce du burger
     public boolean surPlace; //true = sur place, false = à emporter
     public int temps; //Unité arbitraire de temps que prendra la commande
-    public int progress; //Progres de la commande
+    public int progress; //Progression de la commande
     public boolean isDone; //Indique si la commande est prete
 
     public Commande(Viandes viande, ArrayList<Condiments> condiments, Sauces sauce, boolean surPlace) {

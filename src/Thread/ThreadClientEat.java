@@ -6,10 +6,10 @@ import restaurant.Restaurant;
 
 import java.util.Random;
 
-public class Thread_ClientEat implements Runnable{
+public class ThreadClientEat implements Runnable{
     private final Restaurant RESTO;
     private final Client CLIENT;
-    public Thread_ClientEat(Restaurant resto, Client client ) {
+    public ThreadClientEat(Restaurant resto, Client client ) {
         this.RESTO = resto;
         this.CLIENT = client;
     }

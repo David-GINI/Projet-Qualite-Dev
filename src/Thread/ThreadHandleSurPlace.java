@@ -2,23 +2,23 @@ package Thread;
 
 import restaurant.Restaurant;
 
-public class Thread_Handle_SurPlace implements Runnable{
+public class ThreadHandleSurPlace implements Runnable{
     private Restaurant RESTO;
 
     @Override
     public void run() {
         while (RESTO.ouvert) {// Tant que le resto est ouvert
-            int nombre_table_complete = 0;
+            int nombreTablesCompletes = 0;
             for (int i = 0; i < RESTO.listeTables.size(); ++i) {
 
                 if (RESTO.listeTables.get(i).nbClients == RESTO.listeTables.get(i).CAPACITE_MAX) {
-                    nombre_table_complete += 1;
+                    nombreTablesCompletes += 1;
 
                 }
 
             }
             // On test jusque la si le resto est plein
-            if (nombre_table_complete == RESTO.listeTables.size()) {
+            if (nombreTablesCompletes == RESTO.listeTables.size()) {
                 System.out.println("Restautant Complet !! ");
             } else { // Sinon
                 for (int i = 0; i < RESTO.listeTables.size(); ++i) { // On parcourt la liste des tables

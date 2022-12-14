@@ -5,8 +5,8 @@ import restaurant.Etat;
 
 public class Crtique extends Client implements Critique {
     private double note;
-    public Crtique(Restaurant resto,double pourboire, String nom, int temp_attente_max, Status status, Preferences preferences, boolean surPlace) {
-        super(resto, pourboire, nom, temp_attente_max, status, preferences, surPlace);
+    public Crtique(Restaurant resto, double pourboire, String nom, int tempsAttenteMax, Status status, Preferences preferences, boolean surPlace) {
+        super(resto, pourboire, nom, tempsAttenteMax, status, preferences, surPlace);
         this.note = 5;
     }
 
@@ -28,7 +28,7 @@ public class Crtique extends Client implements Critique {
             }
         }
 
-        if(this.attente_actuel == this.temp_attente_max){
+        if(this.attenteActuelle == this.tempsAttenteMax){
             this.note = 0;
         }
         if(this.note <0){
