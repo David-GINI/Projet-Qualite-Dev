@@ -15,6 +15,14 @@ public class Employe {
         this.occupe = false;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setEfficacite(int efficacite) {
+        this.efficacite = efficacite;
+    }
+
     public void augmentation (double montant) {
         this.salaire = this.salaire + montant;
         this.efficacite = this.efficacite + (int)Math.ceil(0.02*montant);
