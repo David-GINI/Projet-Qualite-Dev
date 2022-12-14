@@ -35,5 +35,6 @@ public class Crtique extends Client implements Critique {
             this.note = 0;
         }
         restaurant.listeNotes.add(this.note);
+        restaurant.actualiserNote();
     }
 }

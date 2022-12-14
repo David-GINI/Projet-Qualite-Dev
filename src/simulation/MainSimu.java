@@ -6,16 +6,17 @@ import employe.Nettoyeur;
 import journee.Jour;
 import journee.Journee;
 import misc.Data;
-import restaurant.Etat;
 import restaurant.Restaurant;
-import Thread.ThreadHandleOpen;
+import thread.ThreadHandleClient;
+import thread.ThreadHandleOpen;
+import thread.ThreadTestCritique;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainSimu {
 
-    static ArrayList<Employe> queueEmployes(ArrayList<Employe> listeEmployes, Restaurant restaurant, int numRerolls) {
+    public static ArrayList<Employe> queueEmployes(ArrayList<Employe> listeEmployes, Restaurant restaurant, int numRerolls) {
 
         ArrayList<Employe> choixEmploye = new ArrayList<>();
         int lowerBound;
@@ -46,7 +47,7 @@ public class MainSimu {
         return choixEmploye;
     }
 
-    static void afficheQueueEmploye(ArrayList<Employe> quatreEmployes) {
+    public static void afficheQueueEmploye(ArrayList<Employe> quatreEmployes) {
         int numEmploye = 0;
         for (int i = 0; i < 4; ++i) {
             numEmploye += 1;
@@ -56,7 +57,7 @@ public class MainSimu {
     }
 
 
-    static void embaucherEmploye(Restaurant restaurant, ArrayList<Employe> employesDispo, int numEmploye) {
+    public static void embaucherEmploye(Restaurant restaurant, ArrayList<Employe> employesDispo, int numEmploye) {
 
         Scanner sc= new Scanner(System.in);
         String response;
@@ -86,7 +87,7 @@ public class MainSimu {
             System.out.println();
         }
     }
-    static void pickEmployes(Restaurant restaurant) {
+    public static void pickEmployes(Restaurant restaurant) {
         restaurant.listeEmployes.clear();
         restaurant.genereEmployes(16);
         ArrayList<Employe> employesDispo = new ArrayList<>();
@@ -158,7 +159,7 @@ public class MainSimu {
 
     }
 
-    static void trierCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
+   public static void trierCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
 
         for (int i = 1; i < listeCuisiniers.size(); ++i) {
             int j = i;
@@ -172,7 +173,7 @@ public class MainSimu {
         }
     }
 
-    static void afficherCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
+    public static void afficherCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
         System.out.println("Cuisiniers: ");
         System.out.println();
         int numEmploye = 0;
@@ -183,7 +184,7 @@ public class MainSimu {
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
     }
 
-    static void trierNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
+    public static void trierNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
 
         for (int i = 1; i < listeNettoyeurs.size(); ++i) {
             int j = i;
@@ -197,7 +198,7 @@ public class MainSimu {
         }
     }
 
-    static void afficherNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
+    public static void afficherNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
         System.out.println("Nettoyeurs: ");
         System.out.println();
         int numEmploye = 0;
@@ -245,7 +246,14 @@ public class MainSimu {
 
         System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
         userAnswer = scan.nextLine();
-        ThreadHandleOpen t1 = new ThreadHandleOpen(notreSimu, restaurant);
-        new Thread(t1).start();
+        restaurant.ouvert = true;
+        ThreadHandleOpen clock = new ThreadHandleOpen(notreSimu, restaurant);
+        new Thread(clock).start();
+        ThreadTestCritique afficheCritique = new ThreadTestCritique(restaurant);
+        new Thread(afficheCritique).start();
+        ThreadHandleClient handleClient = new ThreadHandleClient(restaurant);
+        new Thread(handleClient).start();
+
+
         }
     }

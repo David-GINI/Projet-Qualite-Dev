@@ -1,6 +1,7 @@
-package Thread;
+package thread;
 
 import client.Client;
+import client.Critique;
 import restaurant.Restaurant;
 
 public class ThreadAttendre implements Runnable{
@@ -14,20 +15,23 @@ public class ThreadAttendre implements Runnable{
 
     @Override
     public void run() {
-        while(true) {
+
+        while(RESTO.ouvert) {
+            int nombreCritique = 0;
             try {
                 Thread.sleep(1000);  //On avance de une seconde
             } catch (InterruptedException ignored) {
             }
-            System.out.println(CLIENT.getNom() + " attend !");
             CLIENT.setAttenteActuelle(CLIENT.getAttenteActuelle() + 1); // On augmente son temps d'attente actuel
             if (CLIENT.isEstPris()) { //Si il est pris par un cuisinier
                 RESTO.listeClientsPris.add(this.CLIENT); // On le met dans la liste des clients pris
                 break; //On stop la boucle et donc le thread
             }
-            if (CLIENT.getAttenteActuelle() == CLIENT.getTempsAttenteMax()) { // Si ça dépase son temps d'attente max il part
+            if (CLIENT.getAttenteActuelle() >= CLIENT.getTempsAttenteMax()) { // Si ça dépase son temps d'attente max il part
                 System.out.println(CLIENT.getNom() + " est mécontent, il part car il a trop attendu dans la file d'attente");
                 CLIENT.setParti(true);
+                RESTO.fileDAttente.remove(CLIENT);
+                break;
             }
 
         }

@@ -1,5 +1,6 @@
 package restaurant;
 import client.Client;
+import client.Crtique;
 import client.Preferences;
 import client.Status;
 import commande.Commande;
@@ -16,6 +17,7 @@ public class Restaurant {
     public boolean ouvert;
     public Etat etatProprete;
     public ArrayList<Employe> listeEmployes = new ArrayList<Employe>();
+    public int nombreCritique = 0;
     public ArrayList<Cuisinier> listeCuisiniers = new ArrayList<>();
     public ArrayList<Nettoyeur> listeNettoyeurs = new ArrayList<>();
     public ArrayList<Client> listeClients = new ArrayList<Client>();
@@ -75,8 +77,15 @@ public class Restaurant {
                 case 1 -> surPlace = true;
                 default -> surPlace = false;
             }
-            client = new Client(this, pourboireRounded, nom, attente, Status.NORMAL, preferences, surPlace);
+            int clientOrCritique = randomizer.nextInt(100);
+            if(clientOrCritique>=10){
+                client = new Client(this, pourboireRounded, nom, attente, Status.NORMAL, preferences, surPlace);
+            }
+            else{
+                client = new Crtique(this, pourboireRounded, nom, attente, Status.NORMAL, preferences, surPlace);
+            }
             listeClients.add(client);
+            fileDAttente.add(client);
         }
     }
 
@@ -122,6 +131,7 @@ public class Restaurant {
         this.fileDAttente.clear();
         this.listeClientsPris.clear();
     }
+
     public void salir(){
         etatProprete = this.etatProprete.salir();
     }

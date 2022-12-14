@@ -4,7 +4,7 @@ import commande.Commande;
 import commande.Condiments;
 import commande.Sauces;
 import commande.Viandes;
-import Thread.ThreadAttendre;
+import thread.ThreadAttendre;
 import restaurant.Restaurant;
 
 import java.util.ArrayList;
@@ -53,58 +53,60 @@ public   class Client extends Thread {
 
     public void passerCommande() { // Fonction qui randomize la création de la commande du client
         // On s'occupe de la viande
-        Viandes viandeCommande = null;
+        Viandes viandeCommande;
         Random randomCommande = new Random(); // nombre aléatoire pour choisir les ingredients de la commande aléatoirement
         int nombreAleatoireViande = randomCommande.nextInt(100); // Nombre aléatoire entre 0 et 100
-        switch (this.PREFERENCES) {
-            case VEGETARIEN: {
-                viandeCommande = Viandes.VEGETARIEN; // On lui attribut la viande végé
+        if(this.PREFERENCES == Preferences.VEGETARIEN){
+            viandeCommande = Viandes.VEGETARIEN; // On lui attribut la viande végé
+        }
+        else if(this.PREFERENCES == Preferences.POISSON){
+            viandeCommande = Viandes.POISSON; // On lui attribut la viande végé
+        }
+        else if(this.PREFERENCES == Preferences.HALAL){
+            if (nombreAleatoireViande >= 66) { // 34% de chance que sa viande soit : boeuf halal
+                viandeCommande = Viandes.BOEUF_HALAL;
             }
-            case HALAL: {
-                if (nombreAleatoireViande >= 66) { // 34% de chance que sa viande soit : boeuf halal
-                    viandeCommande = Viandes.BOEUF_HALAL;
-                }
-                else if (nombreAleatoireViande >= 33){ // 33% que sa viande soit : poisson
-                    viandeCommande = Viandes.POISSON;
-                }
-                else{
-                    viandeCommande = Viandes.VEGETARIEN; // 33% que sa viande soit végé
-                }
+            else if (nombreAleatoireViande >= 33){ // 33% que sa viande soit : poisson
+                viandeCommande = Viandes.POISSON;
             }
-            case CASHER: {
-                if (nombreAleatoireViande >= 66) { // 34% de chance que sa viande soit : boeuf casher
-                    viandeCommande = Viandes.BOEUF_CASHER;
-                }
-                else if (nombreAleatoireViande >= 33){ // 33% que sa viande soit : poisson
-                    viandeCommande = Viandes.POISSON;
-                }
-                else{
-                    viandeCommande = Viandes.VEGETARIEN; // 33% que sa viande soit végé
-                }
+            else{
+                viandeCommande = Viandes.VEGETARIEN; // 33% que sa viande soit végé
             }
-            case LAMBDA: {
-                if (nombreAleatoireViande >= 83) { // 18% de chance que sa viande soit : boeuf
-                    viandeCommande = Viandes.BOEUF;
-                }
-                else if (nombreAleatoireViande >= 67){ // 16% que sa viande soit : poisson
-                    viandeCommande = Viandes.POISSON;
-                }
-                else if (nombreAleatoireViande >= 49){ // 18% que sa viande soit : poulet
-                    viandeCommande = Viandes.POULET;
-                }
-                else if (nombreAleatoireViande >= 32){ // 17% que sa viande soit : boeuf_halal
-                    viandeCommande = Viandes.BOEUF_HALAL;
-                }
-                else if (nombreAleatoireViande >= 16){ // 16% que sa viande soit : boeuf_casher
-                    viandeCommande = Viandes.BOEUF_CASHER;
-                }
-                else{
-                    viandeCommande = Viandes.VEGETARIEN; // 16% que sa viande soit végé
-                }
+        }
+        else if(this.PREFERENCES == Preferences.CASHER){
+            if (nombreAleatoireViande >= 66) { // 34% de chance que sa viande soit : boeuf casher
+                viandeCommande = Viandes.BOEUF_CASHER;
             }
-            default:
-                System.out.println("Paramètre de préférences invalide.");
-                break;
+            else if (nombreAleatoireViande >= 33){ // 33% que sa viande soit : poisson
+                viandeCommande = Viandes.POISSON;
+            }
+            else{
+                viandeCommande = Viandes.VEGETARIEN; // 33% que sa viande soit végé
+            }
+        }
+        else if(this.PREFERENCES == Preferences.LAMBDA){
+            if (nombreAleatoireViande >= 83) { // 18% de chance que sa viande soit : boeuf
+                viandeCommande = Viandes.BOEUF;
+            }
+            else if (nombreAleatoireViande >= 67){ // 16% que sa viande soit : poisson
+                viandeCommande = Viandes.POISSON;
+            }
+            else if (nombreAleatoireViande >= 49){ // 18% que sa viande soit : poulet
+                viandeCommande = Viandes.POULET;
+            }
+            else if (nombreAleatoireViande >= 32){ // 17% que sa viande soit : boeuf_halal
+                viandeCommande = Viandes.BOEUF_HALAL;
+            }
+            else if (nombreAleatoireViande >= 16){ // 16% que sa viande soit : boeuf_casher
+                viandeCommande = Viandes.BOEUF_CASHER;
+            }
+            else{
+                viandeCommande = Viandes.VEGETARIEN; // 16% que sa viande soit végé
+            }
+        }
+        else{
+            System.out.println("Préférences invalide");
+            viandeCommande = Viandes.BOEUF;
         }
 
         // On s'occupe cette fois des condiments
@@ -137,6 +139,16 @@ public   class Client extends Thread {
 
         Commande commandeClient = new Commande(viandeCommande, listeCondiments, sauceCommande, this.surPlace);
         this.commande = commandeClient;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "PREFERENCES=" + PREFERENCES +
+                ", nom='" + nom + '\'' +
+                ", status=" + status +
+                ", surPlace=" + surPlace +
+                '}';
     }
 
     public Commande getCommande() {

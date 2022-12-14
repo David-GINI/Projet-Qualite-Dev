@@ -1,4 +1,4 @@
-package Thread;
+package thread;
 
 import restaurant.Restaurant;
 
@@ -20,6 +20,9 @@ public class ThreadHandleSurPlace implements Runnable{
             // On test jusque la si le resto est plein
             if (nombreTablesCompletes == RESTO.listeTables.size()) {
                 System.out.println("Restautant Complet !! ");
+
+            } else if (RESTO.listeTables.isEmpty()) {
+                System.out.println("Il n'y a pas de tables dans le restaurant");
             } else { // Sinon
                 for (int i = 0; i < RESTO.listeTables.size(); ++i) { // On parcourt la liste des tables
                     if (RESTO.listeTables.get(i).nbClients != RESTO.listeTables.get(i).CAPACITE_MAX) { // Si la table "i" n'est pas pleine

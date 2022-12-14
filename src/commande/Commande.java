@@ -15,27 +15,25 @@ public class Commande {
     public Commande(Viandes viande, ArrayList<Condiments> condiments, Sauces sauce, boolean surPlace) {
 
         double prix = 0;
-        switch (viande) {
-            case BOEUF:
-            case BOEUF_CASHER:
-            case BOEUF_HALAL: {
-                prix = 5.80;
-                this.temps = 60;
-            }
-            case POULET:
-                prix = 5.20;
-                this.temps = 80;
-            case POISSON:
-                prix = 6.15;
-                this.temps = 70;
-            case VEGETARIEN:
-                prix = 6.00;
-                this.temps = 50;
-            default:
-                System.out.println("Paramètre viande invalide.");
-                break;
+        if(viande == Viandes.BOEUF || viande == Viandes.BOEUF_CASHER || viande == Viandes.BOEUF_HALAL){
+            prix = 5.80;
+            this.temps = 60;
         }
-
+        else if(viande == Viandes.POULET) {
+            prix = 5.20;
+            this.temps = 80;
+        }
+        else if(viande == Viandes.POISSON) {
+            prix = 6.15;
+            this.temps = 70;
+        }
+        else if(viande == Viandes.VEGETARIEN) {
+            prix = 6.00;
+            this.temps = 50;
+        }
+        else {
+            System.out.println("Paramètre viande invalide.");
+        }
         this.prix = prix;
         this.viande = viande;
         this.condiments = condiments;
