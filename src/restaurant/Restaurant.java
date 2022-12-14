@@ -16,6 +16,8 @@ public class Restaurant {
     public boolean ouvert;
     public Etat etatProprete;
     public ArrayList<Employe> listeEmployes = new ArrayList<Employe>();
+    public ArrayList<Cuisinier> listeCuisiniers = new ArrayList<>();
+    public ArrayList<Nettoyeur> listeNettoyeurs = new ArrayList<>();
     public ArrayList<Client> listeClients = new ArrayList<Client>();
     public ArrayList<Client> listeClientsPris = new ArrayList<Client>();
     public ArrayList<Client> fileDAttente = new ArrayList<Client>();
@@ -30,6 +32,7 @@ public class Restaurant {
     public Restaurant(Etat etatProprete, float caisse) {
         this.etatProprete = Etat.PROPRE;
         this.caisse = 0;
+        this.donnees = new Data();
     }
     public void actualiserNote(){
         int moyenne = 0;
@@ -39,33 +42,53 @@ public class Restaurant {
         moyenne = moyenne / this.listeNotes.size();
         this.note = moyenne;
     }
-    public void genereClient() {
+    public void genereClients(int nbClients) {
         Random randomizer = new Random();
-
         Commande commande;
-        double pourboire = randomizer.nextDouble(0.00,6.99);;
+        double pourboire;
+        double pourboireRounded;
         Preferences preferences;
-        String nom = donnees.getRandomPrenom();
-        int attente = randomizer.nextInt(50, 200); //Définition de la patience du client
+        int attente;
+        String nom;
         boolean surPlace;
+        Client client;
 
-        switch (randomizer.nextInt(5)) { //Choix des préférences du client
-            case 1 -> preferences = Preferences.CASHER;
-            case 2 -> preferences = Preferences.HALAL;
-            case 3 -> preferences = Preferences.POISSON;
-            case 4 -> preferences = Preferences.VEGETARIEN;
-            default -> preferences = Preferences.LAMBDA;
+        for (int i = 0; i < nbClients; ++i) {
+            pourboire = randomizer.nextDouble(0.00, 6.99);
+            pourboireRounded = Math.round(pourboire * 100.0)/100.0;
+            nom = donnees.getRandomPrenom();
+            attente = randomizer.nextInt(50, 200); //Définition de la patience du client
+
+            switch (randomizer.nextInt(5)) { //Choix des préférences du client
+                case 1 -> preferences = Preferences.CASHER;
+                case 2 -> preferences = Preferences.HALAL;
+                case 3 -> preferences = Preferences.POISSON;
+                case 4 -> preferences = Preferences.VEGETARIEN;
+                default -> preferences = Preferences.LAMBDA;
+            }
+
+            switch (randomizer.nextInt(2)) { //Est ce que le client mange sur place?
+                case 1 -> surPlace = true;
+                default -> surPlace = false;
+            }
+            client = new Client(this, pourboireRounded, nom, attente, Status.NORMAL, preferences, surPlace);
+            listeClients.add(client);
         }
-
-        switch (randomizer.nextInt(2)) { //Est ce que le client mange sur place?
-            case 1 -> surPlace = true;
-            default -> surPlace = false;
-        }
-
-        Client client = new Client(this, pourboire, nom, attente, Status.NORMAL, preferences, surPlace);
-        listeClients.add(client);
-        fileDAttente.add(client);
     }
+
+    public void genereEmployes(int nbEmployes) {
+        Random randomizer = new Random();
+        String nom;
+        Employe employe;
+        int efficacite;
+        for (int i = 0; i < nbEmployes; ++i) {
+            nom = donnees.getRandomPrenom();
+            efficacite = randomizer.nextInt(1,21);
+            employe = new Employe(nom, efficacite);
+            listeEmployes.add(employe);
+        }
+    }
+
     public ArrayList<Cuisinier> getCuisinier(){
         ArrayList<Cuisinier> listeCuisinier = new ArrayList<>();
         for(int i = 0; i<this.listeEmployes.size(); ++i){

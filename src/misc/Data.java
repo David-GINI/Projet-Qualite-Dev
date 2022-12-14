@@ -12,7 +12,7 @@ public class Data {
 
     public Data() {
         try {
-            List<String> allLines = Files.readAllLines(Paths.get("Prenoms.csv"));
+            List<String> allLines = Files.readAllLines(Paths.get("src/misc/Prenoms.csv"));
             for (String line : allLines) {
                 listePrenoms.add(line);
             }
