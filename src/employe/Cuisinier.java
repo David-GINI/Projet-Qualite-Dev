@@ -38,8 +38,15 @@ public class Cuisinier extends Employe{
         this.commande = commande;
     }
 
-    
-    /** 
+    /**
+     * Setter de l'attribut argentGener
+     * @param argentGenere
+     */
+    public void setArgentGenere(double argentGenere) {
+        this.argentGenere = argentGenere;
+    }
+
+    /**
      * Fonction qui prépare la commande
      * @param commande
      */

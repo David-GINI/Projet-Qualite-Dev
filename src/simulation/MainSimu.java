@@ -231,6 +231,26 @@ public class MainSimu {
         }
     }
 
+    /**
+     * Fonction qui remet l'attribut argentGenere à 0 pour tous les Cuisiniers
+     * @param listeCuisiniers
+     */
+    public static void clearArgentGenere (ArrayList<Cuisinier> listeCuisiniers) {
+       for (int i = 0; i < listeCuisiniers.size(); ++i) {
+           listeCuisiniers.get(i).setArgentGenere(0);
+       }
+    };
+
+    /**
+     * Fonction qui remet l'attribut tablesNettoyees à 0 pour tous les Nettoyeurs
+     * @param listeNettoyeurs
+     */
+    public static void clearTablesNettoyees (ArrayList<Nettoyeur> listeNettoyeurs) {
+        for (int i = 0; i < listeNettoyeurs.size(); ++i) {
+            listeNettoyeurs.get(i).setTablesNettoyees(0);
+        }
+    };
+
     
     /** 
      * Affiche les cuisiniers (affichage différent si la journée touche à sa fin)
@@ -377,6 +397,8 @@ public class MainSimu {
                         break;
                 }
         }
+        clearArgentGenere(restaurant.listeCuisiniers);
+        clearTablesNettoyees(restaurant.listeNettoyeurs);
     }
 
     /**
