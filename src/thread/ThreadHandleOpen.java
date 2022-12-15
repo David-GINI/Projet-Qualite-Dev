@@ -43,7 +43,7 @@ public class ThreadHandleOpen implements Runnable{
                 System.out.println("Il est : "+JOURNEE.heure + " heure");
                 Scanner jourSuivant = new Scanner(System.in);
                 JOURNEE.revenuEgalObjectif(RESTO.revenuParJour);
-                System.out.println("Mama's Burgeria est fermé ! ");
+                routineFermeture(RESTO, JOURNEE);
                 System.out.println("Voulez vous passer à la journée suivante ?");
                 RESTO.nombreCritique = 0;
                 String choix = jourSuivant.nextLine();

@@ -102,11 +102,14 @@ public class MainSimu {
                 cuisinier = new Cuisinier(employesDispo.get(numEmploye).nom, employesDispo.get(numEmploye).efficacite);
                 restaurant.listeCuisiniers.add(cuisinier);                                                                          //Puis on l'ajoute à la listeCuisiniers de Restaurant et on change son nom parmi les employesDispo
                 employesDispo.get(numEmploye).setNom("EMBAUCHÉ");
-            } else {                                                                                                                //Si Nettoyeur, on crée un objet Nettoyeur avec les mêmes attributs que cet employé
+            } else if (response.toUpperCase().equals("N")){                                                                                                                //Si Nettoyeur, on crée un objet Nettoyeur avec les mêmes attributs que cet employé
                 System.out.println(employesDispo.get(numEmploye).nom + " a rejoint vos rangs en tant que Nettoyeur!");
                 nettoyeur = new Nettoyeur(employesDispo.get(numEmploye).nom, employesDispo.get(numEmploye).efficacite);
                 restaurant.listeNettoyeurs.add(nettoyeur);                                                                          //Puis on l'ajoute à la listeNettoyeurs de Restaurant et on change son nom parmi les employesDispo
                 employesDispo.get(numEmploye).setNom("EMBAUCHÉ");
+            }
+            else {
+                System.out.println("Saisie invalide");
             }
             System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
             System.out.println();
@@ -203,8 +206,9 @@ public class MainSimu {
 
    
    /** 
-    * Algo qui trie les cuisiniers en fonction de leur efficacité
+    * Algo qui trie les cuisiniers en fonction de leur efficacité ou de l'argent qu'ils ont généré
     * @param listeCuisiniers
+    * @param param
     */
    public static void trierCuisiniers(ArrayList<Cuisinier> listeCuisiniers, String param) {
         for (int i = 1; i < listeCuisiniers.size(); ++i) {
@@ -231,8 +235,9 @@ public class MainSimu {
 
     
     /** 
-     * Affiche les cuisiniers 
+     * Affiche les cuisiniers (affichage différent si la journée touche à sa fin)
      * @param listeCuisiniers
+     * @param isDayEnd
      */
     public static void afficherCuisiniers(ArrayList<Cuisinier> listeCuisiniers, boolean isDayEnd) {
         System.out.println("Cuisiniers: ");
@@ -252,14 +257,15 @@ public class MainSimu {
 
     
     /** 
-     * Algo qui trie les nettoyeurs en fonction de leur efficacité
+     * Algo qui trie les nettoyeurs en fonction de leur efficacité ou du nombre de tables qu'ils ont nettoyé
      * @param listeNettoyeurs
+     * @param param
      */
     public static void trierNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs, String param) {
         for (int i = 1; i < listeNettoyeurs.size(); ++i) {
             int j = i;
 
-            if (param.equals("argentGenere")) {
+            if (param.equals("tablesNettoyees")) {
                 while (j > 0 && listeNettoyeurs.get(j-1).tablesNettoyees < listeNettoyeurs.get(j).tablesNettoyees) {
                     Nettoyeur k = listeNettoyeurs.get(j);
                     listeNettoyeurs.set(j, listeNettoyeurs.get(j - 1));
@@ -280,8 +286,9 @@ public class MainSimu {
 
     
     /** 
-     * Affiche les nettoyeurs
+     * Affiche les nettoyeurs (affichage différent si la journée touche à sa fin)
      * @param listeNettoyeurs
+     * @param isDayEnd
      */
     public static void afficherNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs, boolean isDayEnd) {
         System.out.println("Nettoyeurs: ");
@@ -300,6 +307,109 @@ public class MainSimu {
         System.out.println();
     }
 
+    public static void routineFermeture(Restaurant restaurant, Journee journee) {
+
+        Scanner sc = new Scanner(System.in);
+        String response;
+        boolean isTermine = false;
+
+        System.out.println(restaurant.nom + " ferme ses portes. Beau travail tout le monde!");
+        System.out.println();
+
+        System.out.println("Argent généré: " + restaurant.revenuParJour + "€ / " + journee.objectifRevenu + "€");
+        System.out.println();
+        System.out.println("[RÉCAPITULATIF STAFF - FIN DE JOURNÉE]");
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        while (!isTermine) {
+            trierCuisiniers(restaurant.listeCuisiniers, "argentGenere");
+            afficherCuisiniers(restaurant.listeCuisiniers, true);
+            System.out.println("Qui souhaitez-vous promouvoir?");
+            System.out.println("Entrez le numéro de cet employé. Entrez (T) pour terminer.");
+            response = sc.nextLine();
+            if (response.toUpperCase().equals("T")) {
+                isTermine = true;
+            }
+            else {
+                int index = Integer.parseInt(response);
+                promotionCuisnier(restaurant.listeCuisiniers, index-1);
+            }
+        }
+        isTermine = false;
+        while (!isTermine) {
+            trierNettoyeurs(restaurant.listeNettoyeurs, "tablesNettoyees");
+            afficherNettoyeurs(restaurant.listeNettoyeurs, true);
+            System.out.println("Qui souhaitez-vous promouvoir?");
+            System.out.println("Entrez le numéro de cet employé. Entrez (T) pour terminer.");
+            response = sc.nextLine();
+            if (response.toUpperCase().equals("T")) {
+                isTermine = true;
+            }
+            else {
+                int index = Integer.parseInt(response);
+                promotionNettoyeur(restaurant.listeNettoyeurs, index-1);
+            }
+        }
+    }
+
+    /**
+     * Fonction qui gère la promotion d'un Cuisinier
+     * @param listeCuisiniers
+     * @param index
+     */
+    public static void promotionCuisnier (ArrayList<Cuisinier> listeCuisiniers, int index) {
+        Scanner sc = new Scanner(System.in);
+
+        double montant;
+        double oldSalaire;
+        int oldEfficacite;
+
+        if (0 <= index && index < listeCuisiniers.size()) {
+            System.out.println("Entrez le montant de l'augmentation pour " + listeCuisiniers.get(index).nom + ".");
+            montant = sc.nextDouble();
+            oldSalaire = listeCuisiniers.get(index).salaire;
+            oldEfficacite = listeCuisiniers.get(index).efficacite;
+            listeCuisiniers.get(index).augmentation(montant);
+
+            System.out.println("Félicitations à " + listeCuisiniers.get(index).nom + " pour son augmentation!");
+            System.out.println("Salaire: " + oldSalaire + " -> " + listeCuisiniers.get(index).salaire);
+            System.out.println("Efficacite: " + oldEfficacite + " -> " + listeCuisiniers.get(index).efficacite);
+            System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        }
+
+        else {
+            System.out.println("Saisie invalide");
+        }
+    }
+
+    /**
+     * Fonction qui gère la promotion d'un Nettoyeur
+     * @param listeNettoyeurs
+     * @param index
+     */
+    public static void promotionNettoyeur (ArrayList<Nettoyeur> listeNettoyeurs, int index) {
+        Scanner sc = new Scanner(System.in);
+
+        double montant;
+        double oldSalaire;
+        int oldEfficacite;
+
+        if (0 <= index && index < listeNettoyeurs.size()) {
+            System.out.println("Entrez le montant de l'augmentation pour " + listeNettoyeurs.get(index).nom + ".");
+            montant = sc.nextDouble();
+            oldSalaire = listeNettoyeurs.get(index).salaire;
+            oldEfficacite = listeNettoyeurs.get(index).efficacite;
+            listeNettoyeurs.get(index).augmentation(montant);
+
+            System.out.println("Félicitations à " + listeNettoyeurs.get(index).nom + " pour son augmentation!");
+            System.out.println("Salaire: " + oldSalaire + " -> " + listeNettoyeurs.get(index).salaire);
+            System.out.println("Efficacite: " + oldEfficacite + " -> " + listeNettoyeurs.get(index).efficacite);
+            System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        }
+
+        else {
+            System.out.println("Saisie invalide");
+        }
+    }
 
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**
@@ -360,7 +470,5 @@ public class MainSimu {
         ThreadHandleSurPlace handleSurPlace = new ThreadHandleSurPlace(restaurant);
         new Thread(handleSurPlace).start();
 
-
-
     }
-    }
+}
