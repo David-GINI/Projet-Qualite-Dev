@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Cuisinier extends Employe{
     private Commande commande;
+    public double argentGenere;
     /**
      * Constructeur de la class Cuisinier : reprend le constructeur de la Employe
      * @param nom
@@ -16,6 +17,7 @@ public class Cuisinier extends Employe{
      */
     public Cuisinier(String nom, int efficacite) {
         super(nom, efficacite);
+        this.argentGenere = 0;
     }
 
     

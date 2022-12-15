@@ -9,6 +9,7 @@ import restaurant.Table;
  */
 public class Nettoyeur extends Employe {
     public Table tableToClean;
+    public int tablesNettoyees;
 
     /**
      * Constructeur de la class Nettoyeur : reprend le constructeur de la Employe
@@ -17,6 +18,7 @@ public class Nettoyeur extends Employe {
      */
     public Nettoyeur(String nom, int efficacite) {
         super(nom, efficacite);
+        this.tablesNettoyees = 0;
     }
 
     
