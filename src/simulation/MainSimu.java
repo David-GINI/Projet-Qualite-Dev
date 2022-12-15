@@ -1,5 +1,6 @@
 package simulation;
 
+import client.Client;
 import employe.Cuisinier;
 import employe.Employe;
 import employe.Nettoyeur;
@@ -7,6 +8,7 @@ import journee.Jour;
 import journee.Journee;
 import misc.Data;
 import restaurant.Restaurant;
+import restaurant.Table;
 import restaurant.Table;
 import thread.*;
 
@@ -24,6 +26,7 @@ public class MainSimu {
      * @param listeEmployes
      * @param restaurant
      * @param numRerolls
+     * @return ArrayList<Employe>
      */
     public static ArrayList<Employe> queueEmployes(ArrayList<Employe> listeEmployes, Restaurant restaurant, int numRerolls) {
 
@@ -322,6 +325,32 @@ public class MainSimu {
         System.out.println();
     }
 
+    public static void routineRecrutement(Restaurant restaurant, Journee journee) {
+
+        Scanner sc = new Scanner(System.in);
+        String userAnswer;
+
+        restaurant.genereEmployes(16);
+        System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
+        System.out.println();
+        pickEmployes(restaurant);
+        System.out.println("[RÉCAPITULATIF STAFF]");
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        trierCuisiniers(restaurant.listeCuisiniers, "efficacite");
+        afficherCuisiniers(restaurant.listeCuisiniers, false);
+        trierNettoyeurs(restaurant.listeNettoyeurs, "efficacite");
+        afficherNettoyeurs(restaurant.listeNettoyeurs, false);
+        System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
+        userAnswer = sc.nextLine();
+        restaurant.revenuParJour = 0;
+        journee.nextDay();
+        journee.setHeure(journee.heureOpen);
+        System.out.println("Bienvenue chez " + restaurant.nom + ", nous sommes " + journee.jour);
+        journee.setObjectifRevenu(50);
+        System.out.println("Objectif pour aujourd'hui: " + journee.objectifRevenu + "€.");
+        restaurant.ouvert = true;
+    }
+
     /**
      * Fonction qui effectue les appels nécessaires pour fermer le restaurant avant de passer à la journée suivante
      * @param restaurant
@@ -508,25 +537,10 @@ public class MainSimu {
         System.out.println();
 
         Journee notreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
-        System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
-        System.out.println();
-        //La journée commence et on choisit les Employes à recruter
-        pickEmployes(restaurant);
-        System.out.println("[RÉCAPITULATIF STAFF]");
-        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-        //Avant l'ouverture, on affiche la liste de Nettoyeurs et Cuisiniers
-        trierCuisiniers(restaurant.listeCuisiniers, "efficacite");
-        afficherCuisiniers(restaurant.listeCuisiniers, false);
-        trierNettoyeurs(restaurant.listeNettoyeurs, "efficacite");
-        afficherNettoyeurs(restaurant.listeNettoyeurs, false);
+        restaurant.genereClients(3);
 
-        System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
-        userAnswer = scan.nextLine();
-        System.out.println("Bienvenue chez " + restaurant.nom + ", nous sommes " + notreSimu.jour);
-        Scanner newObjRevenu = new Scanner(System.in);
-        System.out.println("Quel est votre objectif de revenus aujourd'hui patron ?");
-        notreSimu.setObjectifRevenu(newObjRevenu.nextDouble());
-        restaurant.ouvert = true;
+        routineRecrutement(restaurant, notreSimu);
+
         ThreadHandleOpen clock = new ThreadHandleOpen(notreSimu, restaurant);
         new Thread(clock).start();
         ThreadClientWait attenteClient = new ThreadClientWait(restaurant);
@@ -534,8 +548,6 @@ public class MainSimu {
 
         ThreadTestCritique afficheCritique = new ThreadTestCritique(restaurant);
         new Thread(afficheCritique).start();
-        ThreadArriveeClient arriveeClient = new ThreadArriveeClient(restaurant);
-        new Thread(arriveeClient).start();
         ThreadHandleClient handleClient = new ThreadHandleClient(restaurant);
         new Thread(handleClient).start();
         ThreadHandleSurPlace handleSurPlace = new ThreadHandleSurPlace(restaurant);
