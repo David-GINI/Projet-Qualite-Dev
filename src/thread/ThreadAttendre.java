@@ -3,17 +3,29 @@ package thread;
 import client.Client;
 import client.Critique;
 import restaurant.Restaurant;
-
+/**
+ * Thread qui gère l'attente d'un client
+ * @author G6
+ */
 public class ThreadAttendre implements Runnable{
     private final Client CLIENT;
     private final Restaurant RESTO;
-
+    /**
+     * Constructeur du Thread d'attente
+     * @param CLIENT
+     * @param RESTO
+     */
     public ThreadAttendre(Client CLIENT, Restaurant RESTO) {
         this.CLIENT = CLIENT;
         this.RESTO = RESTO;
     }
 
     @Override
+    /**
+     * Fonction qui lance le thread
+     * augmente le temps d'attente a chaque tour de boucle 
+     * le client part si il a trop attendu ou rejoins la liste des clients pris
+     */
     public void run() {
 
         while(RESTO.ouvert) {

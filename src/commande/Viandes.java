@@ -1,5 +1,8 @@
 package commande;
-
+/**
+ * Enumération des viandes possibles
+ * @author JOLY GINI MOUMANE
+ */
 public enum Viandes {
     BOEUF("Boeuf"),
     POULET("Poulet"),

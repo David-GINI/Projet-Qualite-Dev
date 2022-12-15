@@ -1,15 +1,26 @@
 package thread;
 
 import restaurant.Restaurant;
-
+/**
+ * Thread qui gère la gestion de remise de commande sur place ou non
+ * @author G6
+ */
 public class ThreadHandleSurPlace implements Runnable {
     private Restaurant RESTO;
-
+/**
+     * Constructeur du Thread Handle Sur place
+     * @param RESTO
+     */
     public ThreadHandleSurPlace(Restaurant RESTO) {
         this.RESTO = RESTO;
     }
 
     @Override
+    /**
+     * Fonction qui lance le thread
+     * sers le client si il mange sur place et lui attribue une table
+     * ou sers le client qui paye et pars si il mange a emporter
+     */
     public void run() {
         while (RESTO.ouvert) {// Tant que le resto est ouvert
             int nombreTablesCompletes = 0;

@@ -1,7 +1,10 @@
 package journee;
 
 import restaurant.Etat;
-
+/**
+ * Enumération des jours possibles
+ * @author JOLY GINI MOUMANE
+ */
 public enum Jour {
     LUNDI("Lundi"){
         @Override
@@ -50,5 +53,8 @@ public enum Jour {
     Jour(String value) {
         this.value = value;
     }
+    /**
+     * Passe au jour suivant
+     */
     abstract Jour nextDay();
 }

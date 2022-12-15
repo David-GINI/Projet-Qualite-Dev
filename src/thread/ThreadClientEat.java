@@ -5,16 +5,29 @@ import client.Critique;
 import restaurant.Restaurant;
 
 import java.util.Random;
-
+/**
+ * Thread Gestion du client qui mange
+ * @author G6
+ */
 public class ThreadClientEat implements Runnable{
     private final Restaurant RESTO;
     private final Client CLIENT;
-    public ThreadClientEat(Restaurant resto, Client client ) {
-        this.RESTO = resto;
-        this.CLIENT = client;
+       /**
+     * Constructeur du Thread eat
+     * @param CLIENT
+     * @param CLIENT
+     */
+    public ThreadClientEat(Restaurant RESTO, Client CLIENT ) {
+        this.RESTO = RESTO;
+        this.CLIENT = CLIENT;
     }
 
     @Override
+    /**
+     * Fonction qui lance le thread
+     * augmente le temps de progression de manger a chaque tour de boucle 
+     * le client part et paye quand il finit et peut salir la table (50% de chance)
+     */
     public void run() {
         int temps_manger = 0; //depuis combien de temps il mange
         while(true){

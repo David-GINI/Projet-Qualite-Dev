@@ -1,5 +1,8 @@
 package client;
-
+/**
+ * Enumération des préférences possibles
+ * @author JOLY GINI MOUMANE
+ */
 public enum Preferences {
     HALAL("Halal"),
     CASHER("Casher"),

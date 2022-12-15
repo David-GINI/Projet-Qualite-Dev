@@ -4,15 +4,27 @@ import employe.Cuisinier;
 import restaurant.Restaurant;
 
 import java.util.ArrayList;
-
+/**
+ * Thread qui gère la gestion des clients
+ * @author G6
+ */
 public class ThreadHandleClient implements Runnable {
     private final Restaurant RESTO;
-
+/**
+     * Constructeur du Thread Handle Client
+     * @param RESTO
+     */
     public ThreadHandleClient(Restaurant RESTO) {
         this.RESTO = RESTO;
     }
 
     @Override
+    /**
+     * Fonction qui lance le thread
+     * Ajoute le client dans la liste des clients pris si un cuisinier est dispo
+     * ,le retire de la file d'attente
+     * Le client passe commande puis lancement du thread de preparation de commande pour le cuisinier associé
+     */
     public void run() {
         while(RESTO.ouvert){ // Tant que le resto est ouvert
             try {

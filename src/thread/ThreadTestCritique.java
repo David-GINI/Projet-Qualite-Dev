@@ -3,14 +3,26 @@ package thread;
 import client.Client;
 import client.Critique;
 import restaurant.Restaurant;
-
+/**
+ * Thread qui repère les critique et informe de leur arrivée
+ * @author G6
+ */
 public class ThreadTestCritique implements Runnable{
     private final Restaurant RESTO;
+    /**
+     * Constructeur du Thread qui recherche si un critique vient d'arriver
+     * @param RESTO restaurant utilisé
+     */
     public ThreadTestCritique(Restaurant RESTO) {
             this.RESTO = RESTO;
     }
     @Override
+    /**
+     * Fonction qui lance le thread
+     * Affiche quand un critique arrive
+     */
     public void run() {
+        
         while(RESTO.ouvert){
             int nombreCritique = 0;
             try {

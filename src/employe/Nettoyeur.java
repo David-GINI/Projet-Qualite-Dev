@@ -3,13 +3,27 @@ import restaurant.Restaurant;
 import restaurant.Etat;
 import restaurant.Table;
 
-
+/**
+ * Class Nettoyeur qui utilise Employe
+ * @author G6
+ */
 public class Nettoyeur extends Employe {
     public Table tableToClean;
+
+    /**
+     * Constructeur de la class Nettoyeur : reprend le constructeur de la Employe
+     * @param nom
+     * @param efficacite
+     */
     public Nettoyeur(String nom, int efficacite) {
         super(nom, efficacite);
     }
 
+    
+    /** 
+     * Fonction qui change l'état de propreté du restaurant
+     * @param restaurant
+     */
     public void nettoyerRestaurant(Restaurant restaurant) {
         int tacheEnCours = 0;
         int dureeTache = 60;
@@ -24,6 +38,11 @@ public class Nettoyeur extends Employe {
         this.occupe = false;
 
         }
+        
+        /** 
+         * Fonction qui change l'état de propreté de la table en paramètre
+         * @param table
+         */
         public void nettoyerTable(Table table){
             int tacheEnCours = 0;
             int dureeTache = 60;

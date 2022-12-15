@@ -2,16 +2,28 @@ package thread;
 
 import employe.Nettoyeur;
 import restaurant.Restaurant;
-
+/**
+ * Thread qui nettoie le restaurant
+ * @author G6
+ */
 public class ThreadProcessCleanRestaurant implements Runnable {
     private final Nettoyeur NETTOYEUR;
     private final Restaurant RESTO;
-
+/**
+     * Constructeur du Thread qui clean le restaurant
+     * @param NETTOYEUR
+     * @param RESTO
+     */
     public ThreadProcessCleanRestaurant(Nettoyeur NETTOYEUR, Restaurant RESTO) {
         this.NETTOYEUR = NETTOYEUR;
         this.RESTO = RESTO;
     }
     @Override
+    /**
+     * Fonction qui lance le thread
+     * Augmente le temps en fonction de l'efficacité de l'employe
+     * Nettoie le restaurant lorsque le temps de nettoyage est atteint
+     */
     public void run() {
         int temps = 0;
         while(true) {

@@ -1,5 +1,8 @@
 package commande;
-
+/**
+ * Enumération des sauces possibles
+ * @author JOLY GINI MOUMANE
+ */
 public enum Sauces {
     KETCHUP("Ketchup"),
     MAYONNAISE("Mayonnaise"),

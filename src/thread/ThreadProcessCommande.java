@@ -3,17 +3,30 @@ package thread;
 import commande.Commande;
 import employe.Cuisinier;
 import restaurant.Restaurant;
-
+/**
+ * Thread qui prepare une commande
+ * @author G6
+ */
 public class ThreadProcessCommande implements Runnable {
     private final Cuisinier CUISINIER;
     private final Restaurant RESTO;
-
+/**
+     * Constructeur du Thread qui prepare la commande
+     * @param CUISINIER
+     * @param RESTO
+     */
     public ThreadProcessCommande(Cuisinier CUISINIER, Restaurant RESTO) {
         this.CUISINIER = CUISINIER;
         this.RESTO = RESTO;
     }
 
     @Override
+    /**
+     * Fonction qui lance le thread
+     * prepare la commande en augmentant la progression chaque seconde
+     * si la commande est prete le cuisinier est de nouveau disponible
+     *
+     */
     public void run() {
         while(true) {
             try {

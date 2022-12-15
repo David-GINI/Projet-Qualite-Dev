@@ -1,5 +1,8 @@
 package restaurant;
-
+/**
+ * Enumération des Etat de propreté possibles
+ * @author JOLY GINI MOUMANE
+ */
 public enum Etat {
     PROPRE("Propre") {
         @Override
@@ -40,6 +43,12 @@ public enum Etat {
     Etat(String value) {
         this.value = value;
     }
+    /**
+     * Salir
+     */
     abstract Etat salir();
+    /**
+     * Nettoie 
+     */
     abstract Etat nettoyer();
 }

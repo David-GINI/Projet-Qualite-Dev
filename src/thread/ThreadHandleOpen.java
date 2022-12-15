@@ -7,17 +7,30 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import static simulation.MainSimu.*;
-
+/**
+ * Thread qui gère le jeu (heure)
+ * @author G6
+ */
 public class ThreadHandleOpen implements Runnable{
     private final Journee JOURNEE;
     private final Restaurant RESTO;
-
+/**
+     * Constructeur du Thread Principal
+     * @param JOURNEE
+     * @param RESTO
+     */
     public ThreadHandleOpen(Journee JOURNEE, Restaurant RESTO) {
         this.JOURNEE = JOURNEE;
         this.RESTO = RESTO;
     }
 
     @Override
+    /**
+     * Fonction qui lance le thread princiaple
+     * gère le temps général du restaurant (heure)
+     * ferme le resto quand c'est l'heure de fermer 
+     * et propose au client de relancer une journée
+     */
     public void run() {
         while (true){
             System.out.println(RESTO.listeClients);
@@ -32,7 +45,7 @@ public class ThreadHandleOpen implements Runnable{
                 JOURNEE.revenuEgalObjectif(RESTO.revenuParJour);
                 System.out.println("Mama's Burgeria est fermé ! ");
                 System.out.println("Voulez vous passer à la journée suivante ?");
-
+                RESTO.nombreCritique = 0;
                 String choix = jourSuivant.nextLine();
                 if(Objects.equals(choix, "Oui")){
                     RESTO.genereClients(3);

@@ -12,7 +12,10 @@ import misc.Data;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+/**
+ * class Restaurant
+ * @author G6
+ */
 public class Restaurant {
     public boolean ouvert;
     public boolean complet = false;
@@ -33,7 +36,10 @@ public class Restaurant {
     public Data donnees;
 
     public String nom;
-
+    /**
+     * Constructeur de la class Restaurant
+     * @param nom
+     */
     public Restaurant(String nom) {
 
         this.nom = nom;
@@ -41,6 +47,9 @@ public class Restaurant {
         this.caisse = 5000;
         this.donnees = new Data();
     }
+    /**
+     * actualise la note générale du restaurant en fonction de la liste de notes
+     */
     public void actualiserNote(){
         int moyenne = 0;
         for(int i = 0; i<this.listeNotes.size(); ++i){
@@ -49,6 +58,11 @@ public class Restaurant {
         moyenne = moyenne / this.listeNotes.size();
         this.note = moyenne;
     }
+    
+    /** 
+     * Fonction qui génère un client aléatoirement 
+     * @param nbClients
+     */
     public void genereClients(int nbClients) {
         Random randomizer = new Random();
         Commande commande;
@@ -90,6 +104,11 @@ public class Restaurant {
         }
     }
 
+    
+    /** 
+     * Fonction qui génère un employé aléatoirement 
+     * @param nbEmployes
+     */
     public void genereEmployes(int nbEmployes) {
         Random randomizer = new Random();
         String nom;
@@ -102,41 +121,32 @@ public class Restaurant {
             listeEmployes.add(employe);
         }
     }
-
-    //Fonctions dépréciées -> Utiliser listeCuisinier et listeNettoyeur a la place
-
-    /*public ArrayList<Cuisinier> getCuisinier(){
-        ArrayList<Cuisinier> listeCuisinier = new ArrayList<>();
-        for(int i = 0; i<this.listeEmployes.size(); ++i){
-            if(listeEmployes.get(i) instanceof Cuisinier){
-                listeCuisinier.add((Cuisinier) listeEmployes.get(i));
-            }
-        }
-        return listeCuisinier;//renvoit  la liste des cuisiniers a partir de la liste des gens employés
-    }
-    public ArrayList<Nettoyeur> getNettoyeur(){
-        ArrayList<Nettoyeur> listeNettoyeur = new ArrayList<>();
-        for(int i = 0; i<this.listeEmployes.size(); ++i){
-            if(listeEmployes.get(i) instanceof Nettoyeur){
-                listeNettoyeur.add((Nettoyeur) listeEmployes.get(i));
-            }
-        }
-        return listeNettoyeur; // renvoit  la liste des agents d'entretien a partir de la liste des gens employés
-    }*/
-
+    
+    /** 
+     * Ajoute de l'argent dans la caisse et dans le revenus du jour
+     * @param argent
+     */
     public void ajouterArgent(double argent){
         this.revenuParJour += argent;
         this.caisse += argent;
     }
+    /**
+     * Vide la file d'attente et la liste des clients pris du restaurant
+     */
     public void vider(){
         this.fileDAttente.clear();
         this.listeClientsPris.clear();
     }
 
-
+    /**
+     * Salie le Restaurant
+     */
     public void salir(){
         etatProprete = this.etatProprete.salir();
     }
+    /**
+     * Nettoie le restaurant
+     */
     public void nettoyer(){
         etatProprete = this.etatProprete.nettoyer();
     }

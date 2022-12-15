@@ -14,9 +14,20 @@ import thread.ThreadTestCritique;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Simulation principale du jeu
+ * @author G6
+ */
 public class MainSimu {
 
+    
+    /** 
+     * A faire 
+     * @param listeEmployes
+     * @param restaurant
+     * @param numRerolls
+     * @return ArrayList<Employe>
+     */
     public static ArrayList<Employe> queueEmployes(ArrayList<Employe> listeEmployes, Restaurant restaurant, int numRerolls) {
 
         ArrayList<Employe> choixEmploye = new ArrayList<>();
@@ -48,6 +59,11 @@ public class MainSimu {
         return choixEmploye;
     }
 
+    
+    /** 
+     * Affiche les 4 employés dispo dans 1 Roll pour le recrutement 
+     * @param quatreEmployes
+     */
     public static void afficheQueueEmploye(ArrayList<Employe> quatreEmployes) {
         int numEmploye = 0;
         for (int i = 0; i < 4; ++i) {
@@ -58,6 +74,13 @@ public class MainSimu {
     }
 
 
+    
+    /** 
+     * Fonction pour embaucher un employé
+     * @param restaurant
+     * @param employesDispo
+     * @param numEmploye
+     */
     public static void embaucherEmploye(Restaurant restaurant, ArrayList<Employe> employesDispo, int numEmploye) {
 
         Scanner sc= new Scanner(System.in);
@@ -88,6 +111,11 @@ public class MainSimu {
             System.out.println();
         }
     }
+    
+    /** 
+     * Fonction qui gère le recrutemment proposé à chaque debut de journée
+     * @param restaurant
+     */
     public static void pickEmployes(Restaurant restaurant) {
         restaurant.listeEmployes.clear();
         restaurant.genereEmployes(16);
@@ -160,6 +188,11 @@ public class MainSimu {
 
     }
 
+   
+   /** 
+    * Algo qui trie les cuisiniers en fonction de leur efficacité
+    * @param listeCuisiniers
+    */
    public static void trierCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
 
         for (int i = 1; i < listeCuisiniers.size(); ++i) {
@@ -174,6 +207,11 @@ public class MainSimu {
         }
     }
 
+    
+    /** 
+     * Affiche les cuisiniers 
+     * @param listeCuisiniers
+     */
     public static void afficherCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
         System.out.println("Cuisiniers: ");
         System.out.println();
@@ -185,6 +223,11 @@ public class MainSimu {
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
     }
 
+    
+    /** 
+     * Algo qui trie les nettoyeurs en fonction de leur efficacité
+     * @param listeNettoyeurs
+     */
     public static void trierNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
 
         for (int i = 1; i < listeNettoyeurs.size(); ++i) {
@@ -199,6 +242,11 @@ public class MainSimu {
         }
     }
 
+    
+    /** 
+     * Affiche les nettoyeurs
+     * @param listeNettoyeurs
+     */
     public static void afficherNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
         System.out.println("Nettoyeurs: ");
         System.out.println();
@@ -210,6 +258,11 @@ public class MainSimu {
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         System.out.println();
     }
+    
+    /** 
+     * Fonction qui lance le jeu
+     * @param args
+     */
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     public static void main(String[] args) {

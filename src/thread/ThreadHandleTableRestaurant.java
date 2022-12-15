@@ -1,22 +1,32 @@
 package thread;
 
 import restaurant.Restaurant;
-
+/**
+ * Thread qui sers les commandes et fais manger les clients assis a une table
+ * @author G6
+ */
 public class ThreadHandleTableRestaurant implements Runnable{
-    private Restaurant resto;
-
-    public ThreadHandleTableRestaurant(Restaurant resto) {
-        this.resto = resto;
+    private Restaurant RESTO;
+/**
+     * Constructeur du Thread handle des tables et du restaurant
+     * @param RESTO
+     */
+    public ThreadHandleTableRestaurant(Restaurant RESTO) {
+        this.RESTO = RESTO;
     }
 
     @Override
+    /**
+     * Fonction qui lance le thread
+     * Parcours chaque table, si la commande d'un client assis a une table est prête, il comemnce a manger(ThreadClientEat)
+     */
     public void run() {
-        while(resto.ouvert){// Tant que le resto est ouvert
-            for(int i = 0; i<resto.listeTables.size(); ++i){
-                for(int j = 0; j<resto.listeTables.get(i).clientsATable.size(); ++j){ //On parcourt les tables puis les gens présent dans cette table
-                    if(resto.listeTables.get(i).clientsATable.get(j).getCommande().isDone){ // Si ils sont servi
-                        System.out.println(resto.listeTables.get(i).clientsATable.get(j).getNom() + " vient d'être servi ! ");
-                        ThreadClientEat t1 = new ThreadClientEat(resto,resto.listeTables.get(i).clientsATable.get(j)); // On lance le thread pour qu'ils mangent
+        while(RESTO.ouvert){// Tant que le resto est ouvert
+            for(int i = 0; i< RESTO.listeTables.size(); ++i){
+                for(int j = 0; j< RESTO.listeTables.get(i).clientsATable.size(); ++j){ //On parcourt les tables puis les gens présent dans cette table
+                    if(RESTO.listeTables.get(i).clientsATable.get(j).getCommande().isDone){ // Si ils sont servi
+                        System.out.println(RESTO.listeTables.get(i).clientsATable.get(j).getNom() + " vient d'être servi ! ");
+                        ThreadClientEat t1 = new ThreadClientEat(RESTO, RESTO.listeTables.get(i).clientsATable.get(j)); // On lance le thread pour qu'ils mangent
                         new Thread(t1).start();
                     }
                 }

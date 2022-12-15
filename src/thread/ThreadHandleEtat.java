@@ -5,15 +5,25 @@ import restaurant.Restaurant;
 import restaurant.Etat;
 
 import java.util.ArrayList;
-
+/**
+ * Thread qui gère la gestion de la propreté 
+ * @author G6
+ */
 public class ThreadHandleEtat implements Runnable {
     private final Restaurant RESTO;
-
+/**
+     * Constructeur du Thread Handle Etat
+     * @param RESTO
+     */
     public ThreadHandleEtat(Restaurant RESTO) {
         this.RESTO = RESTO;
     }
 
     @Override
+    /**
+     * Fonction qui lance le thread
+     * Si un nettoyeur est dispo et qu'une table ou le restaurant n'est pas propre alors il lance le nettoyage (ThreadProcessCleanRestaurant ou Table)
+     */
     public void run() {
         while (RESTO.ouvert) { // Tant que le resto est ouvert
             ArrayList<Nettoyeur> listeNettoyeur = RESTO.listeNettoyeurs; //Liste de tous les agents d'entretien dans tous les employés

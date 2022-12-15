@@ -1,7 +1,10 @@
 package commande;
 
 import java.util.ArrayList;
-
+/**
+ * Class Commande qui gère les commandes de chaque client
+ * @author JOLY, GINI, MOUMANE
+ */
 public class Commande {
     public double prix; //Prix de la commande
     public Viandes viande; //Type de viande
@@ -12,6 +15,13 @@ public class Commande {
     public int progress; //Progression de la commande
     public boolean isDone; //Indique si la commande est prete
 
+    /**
+     * Constructeur de la classe Commande
+     * @param viande
+     * @param condiments
+     * @param sauce
+     * @param surPlace
+     */
     public Commande(Viandes viande, ArrayList<Condiments> condiments, Sauces sauce, boolean surPlace) {
 
         double prix = 0;
@@ -43,46 +53,101 @@ public class Commande {
         this.isDone = false;
     }
 
+    
+    /** 
+     * Renvoie le prix de chaque commande
+     * @return double
+     */
     public double getPrix() {
         return prix;
     }
 
+    
+    /** 
+     * Renvoie la viande présente dans la commande
+     * @return Viandes
+     */
     public Viandes getViande() {
         return viande;
     }
 
+    
+    /** 
+     * Renvoie la liste des condiments présents dans la commande
+     * @return ArrayList<Condiments>
+     */
     public ArrayList<Condiments> getCondiments() {
         return condiments;
     }
 
+    
+    /** 
+     * Renvoie la sauce présente dans la commande
+     * @return Sauces
+     */
     public Sauces getSauce() {
         return sauce;
     }
 
+    
+    /** 
+     * Renvoie true si la commande est sur place
+     * @return boolean
+     */
     public boolean isSurPlace() {
         return surPlace;
     }
 
+    
+    /** 
+     * Renvoie le temps de preparation de la commande
+     * @return int
+     */
     public int getTemps() {
         return temps;
     }
 
+    
+    /** 
+     * Renvoie la progression actuelle de la commande
+     * @return int
+     */
     public int getProgress() {
         return progress;
     }
 
+    
+    /** 
+     * Setter de la progression
+     * @param progress
+     */
     public void setProgress(int progress) {
         this.progress = progress;
     }
 
+    
+    /** 
+     * Renvoie true si la commande est prête
+     * @return boolean
+     */
     public boolean isDone() {
         return isDone;
     }
 
+    
+    /** 
+     * Setter pour "si la commande est prête"
+     * @param done
+     */
     public void setDone(boolean done) {
         isDone = done;
     }
 
+    
+    /** 
+     * toString de la class Commande
+     * @return String
+     */
     @Override
     public String toString() {
         return "Commande{" +
