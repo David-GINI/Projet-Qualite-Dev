@@ -2,35 +2,27 @@ package thread;
 
 import restaurant.Restaurant;
 
-import java.util.Random;
-
+/**
+ * Thread de Géneration des clients
+ */
 public class ThreadArriveeClient implements Runnable{
     public final Restaurant RESTO;
 
+    /**
+     * Constructeur du Thread de generation des clients
+     * @param RESTO
+     */
     public ThreadArriveeClient(Restaurant RESTO) {
         this.RESTO = RESTO;
     }
-
+    /**
+     * Fonction qui lance le thread
+     * génére des clients en fonction de l'age du restaurant
+     */
     @Override
     public void run() {
         while(RESTO.ouvert){
-            Random randomizer = new Random();
-            int randomClient = randomizer.nextInt(3);
-                if(randomClient == 0){
-                    RESTO.genereClients(1);
-                    System.out.println("1 Client vient d'arriver");
-                    System.out.println();
-                }
-                else if(randomClient == 1){
-                    RESTO.genereClients(2);
-                    System.out.println("2 Clients viennent d'arriver");
-                    System.out.println();
-                }
-                else{
-                    RESTO.genereClients(3);
-                    System.out.println("3 Clients viennent d'arriver");
-                    System.out.println();
-            }
+            RESTO.genereClients((int)Math.round(1 + 1.5 * RESTO.age));
             try {
                 Thread.sleep(15000);//On avance de 15 seconde
             } catch (InterruptedException ignored) {

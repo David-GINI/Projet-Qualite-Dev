@@ -1,5 +1,6 @@
 package thread;
 
+import client.Critique;
 import restaurant.Restaurant;
 /**
  * Thread qui gère la gestion de remise de commande sur place ou non
@@ -57,6 +58,9 @@ public class ThreadHandleSurPlace implements Runnable {
                                     double prix = (double) ((RESTO.listeClientsPris.get(i).getPourboire() + RESTO.listeClientsPris.get(i).getCommande().prix)*100.0)/100.0;
                                     System.out.println(RESTO.listeClientsPris.get(i).getNom() + " a eu sa commande a emporté, "+ prix + " euros viennent d'être ajouté à la caisse");
                                     System.out.println();
+                                    if(RESTO.listeClientsPris.get(i) instanceof Critique){ // Si c'était un critique
+                                        ((Critique) RESTO.listeClientsPris.get(i)).noter(RESTO); // Il note le resto
+                                    }
                                     RESTO.ajouterArgent(RESTO.listeClientsPris.get(i).getPourboire() + RESTO.listeClientsPris.get(i).getCommande().prix); // il paye et cela s'ajoute dans la caisse du restaurant
                                     RESTO.listeClientsPris.remove(i); // On les retire de la liste des gens pris
                                 }

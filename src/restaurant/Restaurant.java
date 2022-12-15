@@ -38,6 +38,7 @@ public class Restaurant {
     public Data donnees;
 
     public String nom;
+    public int age;
     /**
      * Constructeur de la class Restaurant
      * @param nom

@@ -344,7 +344,7 @@ public class MainSimu {
         journee.nextDay();
         journee.setHeure(journee.heureOpen);
         System.out.println("Bienvenue chez " + restaurant.nom + ", nous sommes " + journee.jour);
-        journee.setObjectifRevenu(50);
+        journee.setObjectifRevenu(50*(restaurant.age*1.5));
         System.out.println("Objectif pour aujourd'hui: " + journee.objectifRevenu + "€.");
         restaurant.ouvert = true;
     }
@@ -359,10 +359,10 @@ public class MainSimu {
         Scanner sc = new Scanner(System.in);
         String response;
         boolean isTermine = false;
-
+        System.out.println("Voici la note du restaurant actuellement : " + restaurant.note);
         System.out.println(restaurant.nom + " ferme ses portes. Beau travail tout le monde!");
         System.out.println();
-
+        restaurant.age += 1;
         System.out.println("Argent généré: " + restaurant.revenuParJour + "€ / " + journee.objectifRevenu + "€");
         System.out.println();
         System.out.println("[RÉCAPITULATIF STAFF - FIN DE JOURNÉE]");
@@ -534,7 +534,7 @@ public class MainSimu {
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         System.out.println();
 
-        Journee notreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
+        Journee notreSimu = new Journee(1000, Jour.DIMANCHE,11,22,8);
 
         routineRecrutement(restaurant, notreSimu);
 
