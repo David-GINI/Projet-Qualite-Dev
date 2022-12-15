@@ -19,8 +19,8 @@ Au fur et à mesure de notre phase de brainstorming, nous avons rempli notre sch
 Le jeu consiste à simuler un restaurant. 
 Dans ce restaurant, il y aura des employés, des clients, de l’argent à gagner, qui pourra être dépensé pour payer les employés et acheter des équipements.
 Il y aura plusieurs types de clients :
-                                * avec un statut (Lambda ou critique culinaire)
-                                * avec une préférence alimentaire (casher, halal, poisson)
+                                - avec un statut (Lambda ou critique culinaire)
+                                - avec une préférence alimentaire (casher, halal, poisson)
 Les clients pourront passer commande et seront pris en charge par un cuisinier.
 Il y aura une file d’attente dans laquelle seront placés les clients, ces derniers ont un temps d’attente, passé celui-ci, ils partent de la file.  
 Il y aura un système d’écoulement d’heures de l’ordre de quelques secondes par heure. Après une certaine heure, le restaurant sera fermé et on pourra passer au jour suivant. 
