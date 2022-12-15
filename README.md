@@ -32,7 +32,7 @@ Avant de passer à la programmation de notre application, nous nous sommes répa
 
 ![jour](https://user-images.githubusercontent.com/92530859/207983313-598e0877-28fe-43f2-9009-d7e6e0eec7a5.PNG)
 
-Simulation d’un restaurant : Manuel d’utilisation
+# Simulation d’un restaurant : Manuel d’utilisation
 
 -	Après avoir lancé l’application, elle demande d’entrer deux noms(vos 2 premiers employés), celui du cuisinier et du nettoyeur après les avoir entrés, le joueur doit choisir un nom pour le restaurant. 
 
