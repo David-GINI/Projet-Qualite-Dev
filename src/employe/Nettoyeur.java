@@ -21,8 +21,15 @@ public class Nettoyeur extends Employe {
         this.tablesNettoyees = 0;
     }
 
-    
-    /** 
+    /**
+     * Setter de l'attribut tablesNettoyees
+     * @param tablesNettoyees
+     */
+    public void setTablesNettoyees(int tablesNettoyees) {
+        this.tablesNettoyees = tablesNettoyees;
+    }
+
+    /**
      * Fonction qui change l'état de propreté du restaurant
      * @param restaurant
      */
