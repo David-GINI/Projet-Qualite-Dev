@@ -28,7 +28,7 @@ public class ThreadProcessCommande implements Runnable {
      *
      */
     public void run() {
-        while(true) {
+        while(RESTO.ouvert) {
             try {
                 Thread.sleep(2000); //On avance de 1 seconde
             } catch (InterruptedException ignored) {

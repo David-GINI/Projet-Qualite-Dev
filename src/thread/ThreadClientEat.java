@@ -30,7 +30,7 @@ public class ThreadClientEat implements Runnable{
      */
     public void run() {
         int temps_manger = 0; //depuis combien de temps il mange
-        while(true){
+        while(RESTO.ouvert){
 
             try {
                 Thread.sleep(1000);//On avance de 1 seconde

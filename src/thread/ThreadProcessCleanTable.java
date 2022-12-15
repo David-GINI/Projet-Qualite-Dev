@@ -28,7 +28,7 @@ public class ThreadProcessCleanTable implements  Runnable{
     public void run() {
 
         int temps = 0; //le temps passé
-        while(true) {
+        while(RESTO.ouvert) {
             try {
                 Thread.sleep(1000); // On avance de 1 seconde
             } catch (InterruptedException ignored) {

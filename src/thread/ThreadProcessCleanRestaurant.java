@@ -26,7 +26,7 @@ public class ThreadProcessCleanRestaurant implements Runnable {
      */
     public void run() {
         int temps = 0;
-        while(true) {
+        while(RESTO.ouvert) {
             try {
                 Thread.sleep(1000); // On avcance de 1 seconde
             } catch (InterruptedException ignored) {
