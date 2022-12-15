@@ -30,7 +30,7 @@ public class ThreadProcessCommande implements Runnable {
     public void run() {
         while(true) {
             try {
-                Thread.sleep(1000); //On avance de 1 seconde
+                Thread.sleep(2000); //On avance de 1 seconde
             } catch (InterruptedException ignored) {
             }
             Commande commande = this.CUISINIER.getCommande(); // La commande a réalisé est celle attribué au cuisinier

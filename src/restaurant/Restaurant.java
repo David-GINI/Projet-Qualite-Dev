@@ -47,7 +47,7 @@ public class Restaurant {
         this.nom = nom;
         this.etatProprete = Etat.PROPRE;
         this.caisse = 5000;
-        Table table = new Table(new ArrayList<Client>(), 1, 4);
+        Table table = new Table( 1, 4);
         this.listeTables.add(table);
         this.donnees = new Data();
     }

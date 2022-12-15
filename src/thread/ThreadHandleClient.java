@@ -27,10 +27,6 @@ public class ThreadHandleClient implements Runnable {
      */
     public void run() {
         while(RESTO.ouvert){ // Tant que le resto est ouvert
-            try {
-                Thread.sleep(1000); //On passe une seconde
-            } catch (InterruptedException ignored) {
-            }
             if(!RESTO.fileDAttente.isEmpty()){
                 for(int i = 0; i < RESTO.listeCuisiniers.size(); ++i){ // On parcourt tous les cuisiniers de la liste
                     if(!RESTO.listeCuisiniers.get(i).occupe){ // Si un cuisinier est dispo
@@ -39,6 +35,7 @@ public class ThreadHandleClient implements Runnable {
                         RESTO.listeCuisiniers.get(i).argentGenere += RESTO.fileDAttente.get(0).getCommande().prix + RESTO.fileDAttente.get(0).getPourboire(); // On ajoute le prix de la commande et le pourboire du client a l'argent généré du cuisinier qui s'occupe de lui
                         RESTO.listeCuisiniers.get(i).setCommande(RESTO.fileDAttente.get(0).getCommande()); //On attribue cette commande au cuisinier qui l'a pris en charge
                         RESTO.fileDAttente.get(0).setEstPris(true); // On prend le premier dans la file d'attente
+                        RESTO.listeClientsPris.add(RESTO.fileDAttente.get(0));
                         System.out.println(RESTO.fileDAttente.get(0).getNom() + " viens d'être pris en charge par le cuisinier : " + RESTO.listeCuisiniers.get(i).nom);
                         System.out.println(RESTO.fileDAttente.get(0).getNom() + " vient de passer sa commande !");
                         RESTO.fileDAttente.remove(0); // On le retire de la file d'attente

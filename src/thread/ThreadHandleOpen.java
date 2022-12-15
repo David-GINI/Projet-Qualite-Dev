@@ -34,15 +34,16 @@ public class ThreadHandleOpen implements Runnable{
     public void run() {
         while (true){
             System.out.println(RESTO.listeClients);
+            System.out.println("----------------------------");
             System.out.println("Il est : "+JOURNEE.heure + " heure");
+            System.out.println("----------------------------");
             JOURNEE.heure +=1;
             System.out.println("Il y a " +RESTO.fileDAttente.size() + " personnes en attente !") ;
-            if(JOURNEE.heure >= JOURNEE.heureClose){
+            System.out.println("Il y a " +RESTO.listeClientsPris.size() + " personnes prises !") ;
+            if(JOURNEE.heure >= JOURNEE.heureClose+1){
                 RESTO.vider();
                 RESTO.ouvert = false;
-                System.out.println("Il est : "+JOURNEE.heure + " heure");
                 Scanner jourSuivant = new Scanner(System.in);
-                JOURNEE.revenuEgalObjectif(RESTO.revenuParJour);
                 routineFermeture(RESTO, JOURNEE);
                 System.out.println("Voulez vous passer à la journée suivante ?");
                 RESTO.nombreCritique = 0;
@@ -69,11 +70,22 @@ public class ThreadHandleOpen implements Runnable{
                     System.out.println("Quel est votre objectif de revenus aujourd'hui patron ?");
                     JOURNEE.setObjectifRevenu(newObjRevenu.nextDouble());
                     RESTO.ouvert = true;
+                    System.out.println("----------------------------");
+                    System.out.println("Il est : "+JOURNEE.heure + " heure");
+                    System.out.println("----------------------------");
+                    JOURNEE.heure+=1;
                     ThreadTestCritique afficheCritique = new ThreadTestCritique(RESTO);
                     new Thread(afficheCritique).start();
                     ThreadHandleClient handleClient = new ThreadHandleClient(RESTO);
                     new Thread(handleClient).start();
-                    System.out.println("Il est : "+JOURNEE.heure + " heure");
+                    ThreadClientWait attenteClient = new ThreadClientWait(RESTO);
+                    new Thread(attenteClient).start();
+                    ThreadHandleSurPlace handleSurPlace = new ThreadHandleSurPlace(RESTO);
+                    new Thread(handleSurPlace).start();
+                    ThreadHandleTableRestaurant servirSurPlace = new ThreadHandleTableRestaurant(RESTO);
+                    new Thread(servirSurPlace).start();
+                    ThreadHandleEtat handleEtat = new ThreadHandleEtat(RESTO);
+                    new Thread(handleEtat).start();
 
                 }
                 else if (Objects.equals(choix, "Non")) {
@@ -81,13 +93,8 @@ public class ThreadHandleOpen implements Runnable{
                     break;
                 }
             }
-            else{
-                for(int i = 0; i<RESTO.fileDAttente.size(); ++i){
-                    RESTO.fileDAttente.get(i).attendre();
-                }
-            }
             try {
-                Thread.sleep(10000);
+                Thread.sleep(15000);
             } catch (InterruptedException ignored){
             }
 

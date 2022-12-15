@@ -48,12 +48,15 @@ public class ThreadClientEat implements Runnable{
                 Random randomSalir = new Random(); // nombre aléatoire pour salir aléatoirement la table a laquelle le client a manger
                 int randomAleatoireSalir = randomSalir.nextInt(2); // Nombre aléatoire entre 0 et 1
                 for(int i = 0; i<RESTO.listeTables.size(); ++i){
-                    if(RESTO.listeTables.get(i).clientsATable.contains(CLIENT)){ // La table ou était le client
+                    if(RESTO.listeTables.get(i).clientsATable2.contains(CLIENT)){ // La table ou était le client
                         if(randomAleatoireSalir == 0){
                             RESTO.listeTables.get(i).salir(); // Une chance sur deux que la table sois sali
+                            System.out.println("Une table est sale !");
+                            RESTO.listeTables.get(i).clientsATable2.remove(CLIENT);
                         }
                     }
                 }
+
                 break; // On stop le thread
             }
 

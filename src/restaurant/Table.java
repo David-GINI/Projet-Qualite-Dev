@@ -9,20 +9,18 @@ import java.util.ArrayList;
  */
 public class Table {
     public ArrayList<Client> clientsATable = new ArrayList<Client>();
+    public ArrayList<Client> clientsATable2 = new ArrayList<Client>();
     public final int CAPACITE_MAX;
     public int numero;
-    public int nbClients;
+    public int nbClients = 0;
     public Etat etat;
     /**
      * Constructeur de la class table
-     * @param clientsATable
      * @param numero
      * @param capacite_max
      */
-    public Table(ArrayList<Client> clientsATable, int numero, int capacite_max) {
+    public Table(int numero, int capacite_max) {
         this.numero = numero;
-        this.clientsATable = clientsATable;
-        nbClients = clientsATable.size();
         etat = Etat.PROPRE;
         this.CAPACITE_MAX = capacite_max;
     }

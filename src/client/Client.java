@@ -14,7 +14,7 @@ import java.util.Random;
  * @author JOLY GINI MOUMANE
  */
 public   class Client{
-    public final int  TEMPS_MANGER = 50;
+    public final int  TEMPS_MANGER = 5;
     protected Restaurant resto;
     protected boolean attend = false;
     protected Commande commande; //Commande du client

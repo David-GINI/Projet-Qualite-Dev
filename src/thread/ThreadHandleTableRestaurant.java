@@ -23,13 +23,17 @@ public class ThreadHandleTableRestaurant implements Runnable{
     public void run() {
         while(RESTO.ouvert){// Tant que le resto est ouvert
             for(int i = 0; i< RESTO.listeTables.size(); ++i){
-                for(int j = 0; j< RESTO.listeTables.get(i).clientsATable.size(); ++j){ //On parcourt les tables puis les gens présent dans cette table
-                    if(RESTO.listeTables.get(i).clientsATable.get(j).getCommande().isDone){ // Si ils sont servi
-                        System.out.println(RESTO.listeTables.get(i).clientsATable.get(j).getNom() + " vient d'être servi ! ");
-                        ThreadClientEat t1 = new ThreadClientEat(RESTO, RESTO.listeTables.get(i).clientsATable.get(j)); // On lance le thread pour qu'ils mangent
-                        new Thread(t1).start();
+                if(!RESTO.listeTables.get(i).clientsATable.isEmpty()){
+                    for(int j = 0; j< RESTO.listeTables.get(i).clientsATable.size(); ++j){ //On parcourt les tables puis les gens présent dans cette table
+                        if(RESTO.listeTables.get(i).clientsATable.get(j).getCommande().isDone){ // Si ils sont servi
+                            System.out.println(RESTO.listeTables.get(i).clientsATable.get(j).getNom() + " vient d'être servi ! ");
+                            ThreadClientEat t1 = new ThreadClientEat(RESTO, RESTO.listeTables.get(i).clientsATable.get(j)); // On lance le thread pour qu'ils mangent
+                            new Thread(t1).start();
+                            RESTO.listeTables.get(i).clientsATable.remove(j);
+                        }
                     }
                 }
+
             }
         }
     }

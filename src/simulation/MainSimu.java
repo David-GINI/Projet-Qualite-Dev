@@ -9,10 +9,8 @@ import journee.Journee;
 import misc.Data;
 import restaurant.Restaurant;
 import restaurant.Table;
-import thread.ThreadHandleClient;
-import thread.ThreadHandleOpen;
-import thread.ThreadHandleSurPlace;
-import thread.ThreadTestCritique;
+import restaurant.Table;
+import thread.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -447,7 +445,7 @@ public class MainSimu {
         }
         else {
             restaurant.caisse = restaurant.caisse - prix;
-            Table table = new Table(new ArrayList<Client>(), restaurant.listeTables.size() + 1, 4);
+            Table table = new Table( restaurant.listeTables.size() + 1, 4);
             restaurant.listeTables.add(table);
         }
     };
@@ -462,6 +460,9 @@ public class MainSimu {
         //On prépare d'abord l'environnement pour démarrer la simulation
         Data donnees = new Data();
         Scanner scan = new Scanner(System.in);
+        Table t1 = new Table(1,5);
+        Table t2 = new Table(2,5);
+        Table t3 = new Table(3,5);
 
         System.out.println("Vous et deux de vos collègues avez fondé un restaurant à hamburgers.");
 
@@ -480,7 +481,9 @@ public class MainSimu {
         Restaurant restaurant = new Restaurant(userAnswer);
         restaurant.listeCuisiniers.add(cuisinierDepart);
         restaurant.listeNettoyeurs.add(nettoyeurDepart);
-
+        restaurant.listeTables.add(t1);
+        restaurant.listeTables.add(t2);
+        restaurant.listeTables.add(t3);
         System.out.println(restaurant.nom + " ouvre ses portes!");
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         System.out.println();
@@ -504,12 +507,19 @@ public class MainSimu {
         restaurant.ouvert = true;
         ThreadHandleOpen clock = new ThreadHandleOpen(notreSimu, restaurant);
         new Thread(clock).start();
+        ThreadClientWait attenteClient = new ThreadClientWait(restaurant);
+        new Thread(attenteClient).start();
+
         ThreadTestCritique afficheCritique = new ThreadTestCritique(restaurant);
         new Thread(afficheCritique).start();
         ThreadHandleClient handleClient = new ThreadHandleClient(restaurant);
         new Thread(handleClient).start();
         ThreadHandleSurPlace handleSurPlace = new ThreadHandleSurPlace(restaurant);
         new Thread(handleSurPlace).start();
+        ThreadHandleTableRestaurant servirSurPlace = new ThreadHandleTableRestaurant(restaurant);
+        new Thread(servirSurPlace).start();
+        ThreadHandleEtat handleEtat = new ThreadHandleEtat(restaurant);
+        new Thread(handleEtat).start();
 
     }
 }
