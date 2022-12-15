@@ -32,6 +32,7 @@ public class ThreadHandleEtat implements Runnable {
                     if (RESTO.listeTables.get(j).etat == Etat.SALE || RESTO.listeTables.get(j).etat == Etat.CORRECT) { // Si une table n'est pas propre
                         if (!nettoyeur.occupe) { // Si un agent d'entretien est dispo
                             nettoyeur.occupe = true; // Il devient occupé
+                            nettoyeur.tablesNettoyees += 1;
                             nettoyeur.tableToClean = RESTO.listeTables.get(j); // On lui affecte la table a nettoyé
                             System.out.println("l'agent d'entretien "+nettoyeur.nom + " va nettoyer la table numéro " + nettoyeur.tableToClean.numero);
                             ThreadProcessCleanTable t1 = new ThreadProcessCleanTable(nettoyeur, RESTO); // On lance le thread de nettoyage de la table
