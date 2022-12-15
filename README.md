@@ -32,29 +32,30 @@ Avant de passer à la programmation de notre application, nous nous sommes répa
 
 ![jour](https://user-images.githubusercontent.com/92530859/207983313-598e0877-28fe-43f2-9009-d7e6e0eec7a5.PNG)
 
-# Simulation d’un restaurant : Manuel d’utilisation
+Simulation d’un restaurant : Manuel d’utilisation
 
--	Après avoir lancé l’application, elle demande d’entrer deux noms, celui du cuistot et du nettoyeur après les avoir entrés, le joueur doit choisir un nom pour le restaurant. 
+-	Après avoir lancé l’application, elle demande d’entrer deux noms(vos 2 premiers employés), celui du cuisinier et du nettoyeur après les avoir entrés, le joueur doit choisir un nom pour le restaurant. 
 
 -	L’application présente 4 employés avec un niveau d’efficacité allant de 0 à 20, plus un employé est efficace, plus il va réaliser une tâche rapidement. L’utilisateur a le choix entre :   - choisir un employé en indiquant le numéro associé à celui voulu puis                 indiquer quelle poste il/elle occupera
-                                   - « R », reroll pour générer 4 nouveaux employés
+                                   - « R », reroll pour regénérer 4 nouveaux employés
                                    -« T », terminer pour sortir du panel de sélection 
 
 -	Un récapitulatif du Staff s’affiche avec le nom des employés cuisiniers et des employés nettoyeurs ainsi que leur efficacité respective et leur salaire.
 
 -	L’utilisateur appuie sur n’importe quelle touche de son clavier suivi de la touche entrée et le jeu commence.
 
--	A chaque heure, une « file d’attente »  s’affiche, elle contient des clients avec leur préférence alimentaire, leur nom, leur statut et s’ils veulent manger sur place ou à emporter.
+-	A chaque heure, on affiche le nombre de clients dans la file d’attente et le nombre de clients pris attendant leur commande (sur place ou non)
 
--	Juste en dessous, est indiqué l’heure, le nombre de personnes présentes dans la file d’attente, le nombre de personnes pris en charge et par quel cuisinier. 
-
+-	Quand un cuisinier est dispo il prend en charge le premier dans la file d’attente et s’occupe de sa commande
 -	Après quelques secondes le cuisinier est de nouveau libre et peut prendre la commande d’un autre client.
 
--	Lorsqu’un client a été servi, le montant de ce qu’il doit, est affiché à l’écran et s’ajoute au total de la caisse. 
+-	Lorsqu’un client a été servi, il mange pendant un certain temps puis, lorsqu’il a fini,  le montant de ce qu’il doit, est affiché à l’écran et s’ajoute au total de la caisse. 
 
--	Lorsqu’un client veut manger sur place, il occupe une table, lorsqu’il part, cette table peut être sale, dans ce cas-là, l’application affiche le nettoyeur « nettoie la table » 
+-	Lorsqu’un client veut manger sur place, il occupe une table, lorsqu’il part, cette table à 1 chance sur 2 de devenir sale, dans ce cas-là, si un nettoyeur est dispo, il la nettoie
 
--	Le jeu continue, les heures défilent jusqu’à l’heure de fermeture où le restaurant affiche être fermé, l’argent gagné durant la journée s’affiche ainsi que l’argent qu’a rapporté chaque cuisinier et le nombre de tables nettoyés par chaque nettoyeur. 
+-	Si la moitié des tables du restaurant sont sales, le restaurant devient sale. Comme pour les tables un nettoyeur peut intervenir si il est disponible 
+
+-	Le jeu continue, les heures défilent jusqu’à l’heure de fermeture où le restaurant affiche être fermé, l’argent gagné durant la journée s’affiche ainsi que l’argent qu’a rapporté chaque cuisinier et le nombre de tables nettoyés par chaque nettoyeur ( sous forme de classement)
 
 -	L’utilisateur peut choisir quel employé il souhaite promouvoir en indiquant le numéro associé à celui-ci ou entrer « T » pour sortir du panel.
 
@@ -62,7 +63,6 @@ Avant de passer à la programmation de notre application, nous nous sommes répa
 
 -	L’application propose d’acheter une table, si l’utilisateur choisit cette option, un montant de 600€ est déduit de l’argent de la caisse et une table est ajouté au restaurant, sinon il peut sortir du panel en entrant « T » au clavier.
 
--	On propose de passer au jour suivant, si on entre « oui » le jeu recommence, on doit indiquer un montant qui sera l’objectif à atteindre durant la journée et réembaucher des employés. 
+-	On propose de passer au jour suivant, si on entre « oui » le jeu recommence, on doit indiquer un montant qui sera l’objectif à atteindre durant la journée et  il peut de nouveau embaucher des employés générés aléatoirement
 
 -	Si on entre « non », le jeu est terminé. 
-
