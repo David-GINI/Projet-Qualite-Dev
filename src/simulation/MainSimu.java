@@ -206,16 +206,25 @@ public class MainSimu {
     * Algo qui trie les cuisiniers en fonction de leur efficacité
     * @param listeCuisiniers
     */
-   public static void trierCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
-
+   public static void trierCuisiniers(ArrayList<Cuisinier> listeCuisiniers, String param) {
         for (int i = 1; i < listeCuisiniers.size(); ++i) {
             int j = i;
 
-            while (j > 0 && listeCuisiniers.get(j-1).efficacite < listeCuisiniers.get(j).efficacite) {
-                Cuisinier k = listeCuisiniers.get(j);
-                listeCuisiniers.set(j, listeCuisiniers.get(j-1));
-                listeCuisiniers.set(j-1, k);
-                j = j-1;
+            if (param.equals("argentGenere")) {
+                while (j > 0 && listeCuisiniers.get(j-1).argentGenere < listeCuisiniers.get(j).argentGenere) {
+                    Cuisinier k = listeCuisiniers.get(j);
+                    listeCuisiniers.set(j, listeCuisiniers.get(j - 1));
+                    listeCuisiniers.set(j - 1, k);
+                    j = j - 1;
+                }
+            }
+            else {
+                while (j > 0 && listeCuisiniers.get(j-1).efficacite < listeCuisiniers.get(j).efficacite) {
+                    Cuisinier k = listeCuisiniers.get(j);
+                    listeCuisiniers.set(j, listeCuisiniers.get(j - 1));
+                    listeCuisiniers.set(j - 1, k);
+                    j = j - 1;
+                }
             }
         }
     }
@@ -225,13 +234,18 @@ public class MainSimu {
      * Affiche les cuisiniers 
      * @param listeCuisiniers
      */
-    public static void afficherCuisiniers(ArrayList<Cuisinier> listeCuisiniers) {
+    public static void afficherCuisiniers(ArrayList<Cuisinier> listeCuisiniers, boolean isDayEnd) {
         System.out.println("Cuisiniers: ");
         System.out.println();
         int numEmploye = 0;
         for (int i = 0; i < listeCuisiniers.size(); ++i) {
             numEmploye += 1;
-            System.out.println(numEmploye + ". " + listeCuisiniers.get(i).nom + " | Efficacité: " + listeCuisiniers.get(i).efficacite + " | Salaire: " + listeCuisiniers.get(i).salaire + "€");
+            if (isDayEnd) {
+                System.out.println(numEmploye + ". " + listeCuisiniers.get(i).nom + " | Efficacité: " + listeCuisiniers.get(i).efficacite + " | Argent généré: " + listeCuisiniers.get(i).argentGenere +  " | Salaire: " + listeCuisiniers.get(i).salaire + "€");
+            }
+            else {
+                System.out.println(numEmploye + ". " + listeCuisiniers.get(i).nom + " | Efficacité: " + listeCuisiniers.get(i).efficacite + " | Salaire: " + listeCuisiniers.get(i).salaire + "€");
+            }
         }
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
     }
@@ -241,16 +255,25 @@ public class MainSimu {
      * Algo qui trie les nettoyeurs en fonction de leur efficacité
      * @param listeNettoyeurs
      */
-    public static void trierNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
-
+    public static void trierNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs, String param) {
         for (int i = 1; i < listeNettoyeurs.size(); ++i) {
             int j = i;
 
-            while (j > 0 && listeNettoyeurs.get(j-1).efficacite < listeNettoyeurs.get(j).efficacite) {
-                Nettoyeur k = listeNettoyeurs.get(j);
-                listeNettoyeurs.set(j, listeNettoyeurs.get(j-1));
-                listeNettoyeurs.set(j-1, k);
-                j = j-1;
+            if (param.equals("argentGenere")) {
+                while (j > 0 && listeNettoyeurs.get(j-1).tablesNettoyees < listeNettoyeurs.get(j).tablesNettoyees) {
+                    Nettoyeur k = listeNettoyeurs.get(j);
+                    listeNettoyeurs.set(j, listeNettoyeurs.get(j - 1));
+                    listeNettoyeurs.set(j - 1, k);
+                    j = j - 1;
+                }
+            }
+            else {
+                while (j > 0 && listeNettoyeurs.get(j-1).efficacite < listeNettoyeurs.get(j).efficacite) {
+                    Nettoyeur k = listeNettoyeurs.get(j);
+                    listeNettoyeurs.set(j, listeNettoyeurs.get(j - 1));
+                    listeNettoyeurs.set(j - 1, k);
+                    j = j - 1;
+                }
             }
         }
     }
@@ -260,24 +283,29 @@ public class MainSimu {
      * Affiche les nettoyeurs
      * @param listeNettoyeurs
      */
-    public static void afficherNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs) {
+    public static void afficherNettoyeurs(ArrayList<Nettoyeur> listeNettoyeurs, boolean isDayEnd) {
         System.out.println("Nettoyeurs: ");
         System.out.println();
         int numEmploye = 0;
         for (int i = 0; i < listeNettoyeurs.size(); ++i) {
             numEmploye += 1;
-            System.out.println(numEmploye + ". " + listeNettoyeurs.get(i).nom + " | Efficacité: " + listeNettoyeurs.get(i).efficacite + " | Salaire: " + listeNettoyeurs.get(i).salaire + "€");
+            if (isDayEnd) {
+                System.out.println(numEmploye + ". " + listeNettoyeurs.get(i).nom + " | Efficacité: " + listeNettoyeurs.get(i).efficacite + " | Tables nettoyées: " + listeNettoyeurs.get(i).tablesNettoyees + " | Salaire: " + listeNettoyeurs.get(i).salaire + "€");
+            }
+            else {
+                System.out.println(numEmploye + ". " + listeNettoyeurs.get(i).nom + " | Efficacité: " + listeNettoyeurs.get(i).efficacite + " | Salaire: " + listeNettoyeurs.get(i).salaire + "€");
+            }
         }
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         System.out.println();
     }
-    
-    /** 
+
+
+    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    /**
      * Fonction qui lance le jeu
      * @param args
      */
-    //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     public static void main(String[] args) {
 
         //On prépare d'abord l'environnement pour démarrer la simulation
@@ -315,10 +343,10 @@ public class MainSimu {
         System.out.println("[RÉCAPITULATIF STAFF]");
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
         //Avant l'ouverture, on affiche la liste de Nettoyeurs et Cuisiniers
-        trierCuisiniers(restaurant.listeCuisiniers);
-        afficherCuisiniers(restaurant.listeCuisiniers);
-        trierNettoyeurs(restaurant.listeNettoyeurs);
-        afficherNettoyeurs(restaurant.listeNettoyeurs);
+        trierCuisiniers(restaurant.listeCuisiniers, "efficacite");
+        afficherCuisiniers(restaurant.listeCuisiniers, false);
+        trierNettoyeurs(restaurant.listeNettoyeurs, "efficacite");
+        afficherNettoyeurs(restaurant.listeNettoyeurs, false);
 
         System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
         userAnswer = scan.nextLine();

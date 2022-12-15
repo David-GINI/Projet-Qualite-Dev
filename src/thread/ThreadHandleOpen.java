@@ -55,10 +55,10 @@ public class ThreadHandleOpen implements Runnable{
                     pickEmployes(RESTO);
                     System.out.println("[RÉCAPITULATIF STAFF]");
                     System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-                    trierCuisiniers(RESTO.listeCuisiniers);
-                    afficherCuisiniers(RESTO.listeCuisiniers);
-                    trierNettoyeurs(RESTO.listeNettoyeurs);
-                    afficherNettoyeurs(RESTO.listeNettoyeurs);
+                    trierCuisiniers(RESTO.listeCuisiniers, "efficacite");
+                    afficherCuisiniers(RESTO.listeCuisiniers, false);
+                    trierNettoyeurs(RESTO.listeNettoyeurs, "efficacite");
+                    afficherNettoyeurs(RESTO.listeNettoyeurs, false);
                     System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
                     choix = jourSuivant.nextLine();
                     RESTO.revenuParJour = 0;
