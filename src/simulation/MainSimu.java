@@ -9,6 +9,7 @@ import misc.Data;
 import restaurant.Restaurant;
 import thread.ThreadHandleClient;
 import thread.ThreadHandleOpen;
+import thread.ThreadHandleSurPlace;
 import thread.ThreadTestCritique;
 
 import java.util.ArrayList;
@@ -253,7 +254,10 @@ public class MainSimu {
         new Thread(afficheCritique).start();
         ThreadHandleClient handleClient = new ThreadHandleClient(restaurant);
         new Thread(handleClient).start();
+        ThreadHandleSurPlace handleSurPlace = new ThreadHandleSurPlace(restaurant);
+        new Thread(handleSurPlace).start();
 
 
-        }
+
+    }
     }

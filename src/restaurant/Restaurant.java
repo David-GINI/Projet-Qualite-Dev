@@ -15,6 +15,7 @@ import java.util.Random;
 
 public class Restaurant {
     public boolean ouvert;
+    public boolean complet = false;
     public Etat etatProprete;
     public ArrayList<Employe> listeEmployes = new ArrayList<Employe>();
     public int nombreCritique = 0;
@@ -131,6 +132,7 @@ public class Restaurant {
         this.fileDAttente.clear();
         this.listeClientsPris.clear();
     }
+
 
     public void salir(){
         etatProprete = this.etatProprete.salir();

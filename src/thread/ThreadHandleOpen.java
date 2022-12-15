@@ -56,6 +56,10 @@ public class ThreadHandleOpen implements Runnable{
                     System.out.println("Quel est votre objectif de revenus aujourd'hui patron ?");
                     JOURNEE.setObjectifRevenu(newObjRevenu.nextDouble());
                     RESTO.ouvert = true;
+                    ThreadTestCritique afficheCritique = new ThreadTestCritique(RESTO);
+                    new Thread(afficheCritique).start();
+                    ThreadHandleClient handleClient = new ThreadHandleClient(RESTO);
+                    new Thread(handleClient).start();
                     System.out.println("Il est : "+JOURNEE.heure + " heure");
 
                 }
