@@ -7,3 +7,5 @@ Le .jar se trouve sur le chemin : out\artifacts\Projet_Qualite_Dev_jar\Projet-Qu
 
 Nous avons réalisé ce projet sur IntelliJ IDEA
 
+Le code source est dans le dossier "src"
+
