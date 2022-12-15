@@ -38,6 +38,7 @@ public class ThreadProcessCleanTable implements  Runnable{
             if(temps >= 50){ // Si la progression atteint 50
                 table.nettoyer(); // La table est néttoyé
                 System.out.println("la table "+table.numero + " est nettoyée !");
+                System.out.println();
                 NETTOYEUR.occupe = false; // l'agent d'entretien est disponible
                 break;
                 }

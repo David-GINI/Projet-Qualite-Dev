@@ -39,12 +39,14 @@ public class ThreadHandleOpen implements Runnable{
             JOURNEE.heure +=1;
             System.out.println("Il y a " +RESTO.fileDAttente.size() + " personnes en attente !") ;
             System.out.println("Il y a " +RESTO.listeClientsPris.size() + " personnes prises !") ;
+            System.out.println();
             if(JOURNEE.heure >= JOURNEE.heureClose+1){
                 RESTO.vider();
                 RESTO.ouvert = false;
                 Scanner jourSuivant = new Scanner(System.in);
                 routineFermeture(RESTO, JOURNEE);
                 System.out.println("Voulez vous passer à la journée suivante ?");
+                System.out.println();
                 RESTO.nombreCritique = 0;
                 String choix = jourSuivant.nextLine();
                 if(Objects.equals(choix, "Oui")){

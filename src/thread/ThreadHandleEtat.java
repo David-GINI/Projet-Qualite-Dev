@@ -51,6 +51,7 @@ public class ThreadHandleEtat implements Runnable {
                             nettoyeur.tablesNettoyees += 1;
                             nettoyeur.tableToClean = RESTO.listeTables.get(j); // On lui affecte la table a nettoyé
                             System.out.println("l'agent d'entretien "+nettoyeur.nom + " va nettoyer la table numéro " + nettoyeur.tableToClean.numero);
+                            System.out.println();
                             ThreadProcessCleanTable t1 = new ThreadProcessCleanTable(nettoyeur, RESTO); // On lance le thread de nettoyage de la table
                             new Thread(t1).start();
                         }

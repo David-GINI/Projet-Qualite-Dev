@@ -40,8 +40,11 @@ public class ThreadClientEat implements Runnable{
             if(temps_manger == CLIENT.TEMPS_MANGER){ // Si il a fini de manger
                 CLIENT.setParti(true); // Il part
                 System.out.println(CLIENT.getNom() + " a terminer son plat il va payer puis partir");
+                System.out.println();
                 RESTO.ajouterArgent(CLIENT.getPourboire() + CLIENT.getCommande().prix); // il paye et cela s'ajoute dans la caisse du restaurant
-                System.out.println(CLIENT.getPourboire() + CLIENT.getCommande().prix + " euros viennent d'être ajouté à la caisse");
+                double prix = (double)((CLIENT.getPourboire() + CLIENT.getCommande().prix) * 100.0)/100.0;
+                System.out.println(prix + " euros viennent d'être ajouté à la caisse");
+                System.out.println();
                 if(CLIENT instanceof Critique){ // Si c'était un critique
                     ((Critique) CLIENT).noter(RESTO); // Il note le resto
                 }
@@ -52,6 +55,7 @@ public class ThreadClientEat implements Runnable{
                         if(randomAleatoireSalir == 0){
                             RESTO.listeTables.get(i).salir(); // Une chance sur deux que la table sois sali
                             System.out.println("Une table est sale !");
+                            System.out.println();
                             RESTO.listeTables.get(i).clientsATable2.remove(CLIENT);
                         }
                     }

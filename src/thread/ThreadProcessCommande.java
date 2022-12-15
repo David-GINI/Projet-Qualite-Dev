@@ -38,6 +38,7 @@ public class ThreadProcessCommande implements Runnable {
             if (commande.progress >= commande.temps) { // Si la progression atteint le temps de preparation de la commande
                 commande.isDone = true; //La commande est prête
                 System.out.println("le cuisiner "+CUISINIER.nom + " a terminé de préparer sa commander, il est de nouveau en attente de travail !");
+                System.out.println();
                 CUISINIER.occupe = false; //Le cuisinier est disponible
                 break;
             }

@@ -131,8 +131,8 @@ public class Restaurant {
      * @param argent
      */
     public void ajouterArgent(double argent){
-        this.revenuParJour += argent;
-        this.caisse += argent;
+        this.revenuParJour = (double) ((this.revenuParJour + argent) * 100.0) / 100.0;
+        this.caisse = (double) ((this.caisse + argent) * 100.0) / 100.0;
     }
     /**
      * Vide la file d'attente et la liste des clients pris du restaurant

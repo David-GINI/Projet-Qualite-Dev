@@ -45,6 +45,7 @@ public class ThreadHandleSurPlace implements Runnable {
                                         RESTO.listeTables.get(j).clientsATable2.add(RESTO.listeClientsPris.get(i)); // On l'affecte à cette table
                                         RESTO.listeTables.get(j).nbClients += 1;
                                         System.out.println("Le client : "+RESTO.listeClientsPris.get(i).getNom() + " va à la table numéro " + RESTO.listeTables.get(j).numero + " et sera bientot servi");
+                                        System.out.println();
                                         RESTO.listeClientsPris.remove(i); // On le retire de la liste des clients pris
                                         break;
                                     }
@@ -53,7 +54,9 @@ public class ThreadHandleSurPlace implements Runnable {
                             else {// Si il ne mange pas sur place
                                 if (RESTO.listeClientsPris.get(i).getCommande().isDone) { //Si leurs commandes sont prêtes
                                     RESTO.listeClientsPris.get(i).setParti(true); // Ils partent
-                                    System.out.println(RESTO.listeClientsPris.get(i).getNom() + " a eu sa commande a emporté, "+RESTO.listeClientsPris.get(i).getPourboire() + RESTO.listeClientsPris.get(i).getCommande().prix + " euros viennent d'être ajouté à la caisse");
+                                    double prix = (double) ((RESTO.listeClientsPris.get(i).getPourboire() + RESTO.listeClientsPris.get(i).getCommande().prix)*100.0)/100.0;
+                                    System.out.println(RESTO.listeClientsPris.get(i).getNom() + " a eu sa commande a emporté, "+ prix + " euros viennent d'être ajouté à la caisse");
+                                    System.out.println();
                                     RESTO.ajouterArgent(RESTO.listeClientsPris.get(i).getPourboire() + RESTO.listeClientsPris.get(i).getCommande().prix); // il paye et cela s'ajoute dans la caisse du restaurant
                                     RESTO.listeClientsPris.remove(i); // On les retire de la liste des gens pris
                                 }

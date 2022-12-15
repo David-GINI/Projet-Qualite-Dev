@@ -19,14 +19,17 @@ public class ThreadArriveeClient implements Runnable{
                 if(randomClient == 0){
                     RESTO.genereClients(1);
                     System.out.println("1 Client vient d'arriver");
+                    System.out.println();
                 }
                 else if(randomClient == 1){
                     RESTO.genereClients(2);
                     System.out.println("2 Clients viennent d'arriver");
+                    System.out.println();
                 }
                 else{
                     RESTO.genereClients(3);
                     System.out.println("3 Clients viennent d'arriver");
+                    System.out.println();
             }
             try {
                 Thread.sleep(15000);//On avance de 15 seconde

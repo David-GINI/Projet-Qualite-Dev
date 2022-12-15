@@ -1,7 +1,6 @@
 package thread;
 
 import client.Client;
-import client.Critique;
 import restaurant.Restaurant;
 /**
  * Thread qui gère l'attente d'un client
@@ -31,6 +30,7 @@ public class ThreadAttendre implements Runnable{
             CLIENT.setAttenteActuelle(CLIENT.getAttenteActuelle() + 1); // On augmente son temps d'attente actuel
             if (CLIENT.getAttenteActuelle() >= CLIENT.getTempsAttenteMax()) { // Si ça dépase son temps d'attente max il part
                 System.out.println(CLIENT.getNom() + " est mécontent, il part car il a trop attendu dans la file d'attente");
+                System.out.println();
                 CLIENT.setParti(true);
                 RESTO.fileDAttente.remove(CLIENT);
             }

@@ -35,6 +35,7 @@ public class ThreadProcessCleanRestaurant implements Runnable {
             if(temps >= 100){ // Quand le temps est a 100
                 RESTO.nettoyer(); // Le resto est néttoyé
                 System.out.println("le restaurant est néttoyé ! ");
+                System.out.println();
                 NETTOYEUR.occupe = false; // L'agent d'entretien est de nouveau disponible
                 break;//On stop le thread
             }

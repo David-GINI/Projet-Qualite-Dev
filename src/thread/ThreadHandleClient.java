@@ -1,9 +1,6 @@
 package thread;
 
-import employe.Cuisinier;
 import restaurant.Restaurant;
-
-import java.util.ArrayList;
 /**
  * Thread qui gère la gestion des clients
  * @author G6
@@ -37,7 +34,7 @@ public class ThreadHandleClient implements Runnable {
                         RESTO.fileDAttente.get(0).setEstPris(true); // On prend le premier dans la file d'attente
                         RESTO.listeClientsPris.add(RESTO.fileDAttente.get(0));
                         System.out.println(RESTO.fileDAttente.get(0).getNom() + " viens d'être pris en charge par le cuisinier : " + RESTO.listeCuisiniers.get(i).nom);
-                        System.out.println(RESTO.fileDAttente.get(0).getNom() + " vient de passer sa commande !");
+                        System.out.println();
                         RESTO.fileDAttente.remove(0); // On le retire de la file d'attente
 
                         ThreadProcessCommande t1 = new ThreadProcessCommande(RESTO.listeCuisiniers.get(i), RESTO); //On lance le thread de preparation de commande

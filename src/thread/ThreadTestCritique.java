@@ -1,6 +1,5 @@
 package thread;
 
-import client.Client;
 import client.Critique;
 import restaurant.Restaurant;
 /**
@@ -36,6 +35,7 @@ public class ThreadTestCritique implements Runnable{
 
                     if(nombreCritique > RESTO.nombreCritique){
                         System.out.println("Un Critique vient d'arriver au restaurant");
+                        System.out.println();
                         RESTO.nombreCritique +=1;
                     }
 
