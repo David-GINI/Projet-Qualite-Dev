@@ -1,6 +1,5 @@
 package simulation;
 
-import client.Client;
 import employe.Cuisinier;
 import employe.Employe;
 import employe.Nettoyeur;
@@ -8,7 +7,6 @@ import journee.Jour;
 import journee.Journee;
 import misc.Data;
 import restaurant.Restaurant;
-import restaurant.Table;
 import restaurant.Table;
 import thread.*;
 
@@ -26,7 +24,6 @@ public class MainSimu {
      * @param listeEmployes
      * @param restaurant
      * @param numRerolls
-     * @return ArrayList<Employe>
      */
     public static ArrayList<Employe> queueEmployes(ArrayList<Employe> listeEmployes, Restaurant restaurant, int numRerolls) {
 
@@ -511,7 +508,6 @@ public class MainSimu {
         System.out.println();
 
         Journee notreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
-        restaurant.genereClients(3);
         System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
         System.out.println();
         //La journée commence et on choisit les Employes à recruter
@@ -526,6 +522,10 @@ public class MainSimu {
 
         System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
         userAnswer = scan.nextLine();
+        System.out.println("Bienvenue chez " + restaurant.nom + ", nous sommes " + notreSimu.jour);
+        Scanner newObjRevenu = new Scanner(System.in);
+        System.out.println("Quel est votre objectif de revenus aujourd'hui patron ?");
+        notreSimu.setObjectifRevenu(newObjRevenu.nextDouble());
         restaurant.ouvert = true;
         ThreadHandleOpen clock = new ThreadHandleOpen(notreSimu, restaurant);
         new Thread(clock).start();
@@ -534,6 +534,8 @@ public class MainSimu {
 
         ThreadTestCritique afficheCritique = new ThreadTestCritique(restaurant);
         new Thread(afficheCritique).start();
+        ThreadArriveeClient arriveeClient = new ThreadArriveeClient(restaurant);
+        new Thread(arriveeClient).start();
         ThreadHandleClient handleClient = new ThreadHandleClient(restaurant);
         new Thread(handleClient).start();
         ThreadHandleSurPlace handleSurPlace = new ThreadHandleSurPlace(restaurant);

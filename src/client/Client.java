@@ -173,8 +173,12 @@ public   class Client{
         this.commande = commandeClient;
     }
 
-    
-    /** 
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
+
+    /**
      * toString de la classe Client
      * @return String
      */

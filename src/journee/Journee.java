@@ -132,6 +132,9 @@ public class Journee {
         }
     }
 
+    /**
+     * Fonction qui passe au jour d'après
+     */
     public void nextDay(){
         this.jour = this.jour.nextDay();
     }

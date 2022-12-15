@@ -44,7 +44,7 @@ public class ThreadHandleSurPlace implements Runnable {
                                         RESTO.listeTables.get(j).clientsATable.add(RESTO.listeClientsPris.get(i)); // On l'affecte à cette table
                                         RESTO.listeTables.get(j).clientsATable2.add(RESTO.listeClientsPris.get(i)); // On l'affecte à cette table
                                         RESTO.listeTables.get(j).nbClients += 1;
-                                        System.out.println(RESTO.listeClientsPris.get(i) + " va à la table numéro " + RESTO.listeTables.get(j).numero + " et sera bientot servi");
+                                        System.out.println("Le client : "+RESTO.listeClientsPris.get(i).getNom() + " va à la table numéro " + RESTO.listeTables.get(j).numero + " et sera bientot servi");
                                         RESTO.listeClientsPris.remove(i); // On le retire de la liste des clients pris
                                         break;
                                     }
