@@ -27,7 +27,7 @@ public class ThreadClientWait implements Runnable{
                 RESTO.fileDAttente.get(i).attendre();
             }
             try {
-                Thread.sleep(1000);  //On avance de une seconde
+                Thread.sleep(1500);  //On avance de une seconde et demi
             } catch (InterruptedException ignored) {
             }
         }

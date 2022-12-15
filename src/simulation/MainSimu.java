@@ -1,6 +1,5 @@
 package simulation;
 
-import client.Client;
 import employe.Cuisinier;
 import employe.Employe;
 import employe.Nettoyeur;
@@ -8,7 +7,6 @@ import journee.Jour;
 import journee.Journee;
 import misc.Data;
 import restaurant.Restaurant;
-import restaurant.Table;
 import restaurant.Table;
 import thread.*;
 
@@ -537,7 +535,6 @@ public class MainSimu {
         System.out.println();
 
         Journee notreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
-        restaurant.genereClients(3);
 
         routineRecrutement(restaurant, notreSimu);
 
@@ -545,7 +542,8 @@ public class MainSimu {
         new Thread(clock).start();
         ThreadClientWait attenteClient = new ThreadClientWait(restaurant);
         new Thread(attenteClient).start();
-
+        ThreadArriveeClient arriveeClient = new ThreadArriveeClient(restaurant);
+        new Thread(arriveeClient).start();
         ThreadTestCritique afficheCritique = new ThreadTestCritique(restaurant);
         new Thread(afficheCritique).start();
         ThreadHandleClient handleClient = new ThreadHandleClient(restaurant);
@@ -556,6 +554,5 @@ public class MainSimu {
         new Thread(servirSurPlace).start();
         ThreadHandleEtat handleEtat = new ThreadHandleEtat(restaurant);
         new Thread(handleEtat).start();
-
     }
 }

@@ -48,8 +48,6 @@ public class ThreadHandleOpen implements Runnable{
                 RESTO.nombreCritique = 0;
                 String choix = jourSuivant.nextLine();
                 if(Objects.equals(choix, "Oui")){
-                    RESTO.genereClients(3);
-
                     routineRecrutement(RESTO, JOURNEE);
 
                     System.out.println("----------------------------");
@@ -60,6 +58,8 @@ public class ThreadHandleOpen implements Runnable{
                     new Thread(afficheCritique).start();
                     ThreadHandleClient handleClient = new ThreadHandleClient(RESTO);
                     new Thread(handleClient).start();
+                    ThreadArriveeClient arriveeClient = new ThreadArriveeClient(RESTO);
+                    new Thread(arriveeClient).start();
                     ThreadClientWait attenteClient = new ThreadClientWait(RESTO);
                     new Thread(attenteClient).start();
                     ThreadHandleSurPlace handleSurPlace = new ThreadHandleSurPlace(RESTO);
@@ -76,7 +76,7 @@ public class ThreadHandleOpen implements Runnable{
                 }
             }
             try {
-                Thread.sleep(15000);
+                Thread.sleep(25000);
             } catch (InterruptedException ignored){
             }
 
