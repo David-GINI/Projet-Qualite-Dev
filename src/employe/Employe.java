@@ -43,12 +43,17 @@ public class Employe {
 
     
     /** 
-     * Fonction qui augmente de "montant" le salaire de l'employé
+     * Fonction qui augmente de "montant" le salaire de l'employé et qui améliore son efficacité en conséquence
      * @param montant
      */
     public void augmentation (double montant) {
-        this.salaire = this.salaire + montant;
-        this.efficacite = this.efficacite + (int)Math.ceil(0.02*montant);
+        if (montant > 0) {
+            this.salaire = this.salaire + montant;
+            this.efficacite = this.efficacite + (int) Math.round(0.015 * montant);
+        }
+        else {
+            System.out.println("Saisie invalide");
+        }
     }
 
     

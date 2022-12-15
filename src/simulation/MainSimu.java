@@ -1,5 +1,6 @@
 package simulation;
 
+import client.Client;
 import employe.Cuisinier;
 import employe.Employe;
 import employe.Nettoyeur;
@@ -7,6 +8,7 @@ import journee.Jour;
 import journee.Journee;
 import misc.Data;
 import restaurant.Restaurant;
+import restaurant.Table;
 import thread.ThreadHandleClient;
 import thread.ThreadHandleOpen;
 import thread.ThreadHandleSurPlace;
@@ -73,8 +75,6 @@ public class MainSimu {
         }
 
     }
-
-
     
     /** 
      * Fonction qui gère le recrutement d'un employé en fonction de son indice dans la queueEmploye
@@ -307,6 +307,11 @@ public class MainSimu {
         System.out.println();
     }
 
+    /**
+     * Fonction qui effectue les appels nécessaires pour fermer le restaurant avant de passer à la journée suivante
+     * @param restaurant
+     * @param journee
+     */
     public static void routineFermeture(Restaurant restaurant, Journee journee) {
 
         Scanner sc = new Scanner(System.in);
@@ -343,11 +348,36 @@ public class MainSimu {
             response = sc.nextLine();
             if (response.toUpperCase().equals("T")) {
                 isTermine = true;
-            }
-            else {
+            } else {
                 int index = Integer.parseInt(response);
-                promotionNettoyeur(restaurant.listeNettoyeurs, index-1);
+                promotionNettoyeur(restaurant.listeNettoyeurs, index - 1);
             }
+        }
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        isTermine = false;
+        while (!isTermine) {
+                System.out.println();
+                System.out.println("Argent en caisse: " + restaurant.caisse + "€");
+                System.out.println("Vous disposez de " + restaurant.listeTables.size() + "/" + restaurant.NB_TABLES_MAX + " tables.");
+                double prixTable = Math.round((restaurant.listeTables.size() * 150) * 100.0) / 100.0;
+                System.out.println();
+                if (restaurant.listeTables.size() < restaurant.NB_TABLES_MAX) {
+                    System.out.println("(A) Acheter une table pour " + prixTable + "€");
+                }
+                System.out.println("(T) Terminer");
+                response = sc.nextLine();
+
+                switch (response.toUpperCase()) {
+                    case "A":
+                        addTable(restaurant, prixTable);
+                        break;
+                    case "T":
+                        isTermine = true;
+                        break;
+                    default:
+                        System.out.println("Saisie invalide");
+                        break;
+                }
         }
     }
 
@@ -410,6 +440,17 @@ public class MainSimu {
             System.out.println("Saisie invalide");
         }
     }
+
+    public static void addTable (Restaurant restaurant, double prix) {
+        if ((restaurant.caisse - prix) < 0) {
+            System.out.println("Vous ne disposez pas des fonds nécessaires.");
+        }
+        else {
+            restaurant.caisse = restaurant.caisse - prix;
+            Table table = new Table(new ArrayList<Client>(), restaurant.listeTables.size() + 1, 4);
+            restaurant.listeTables.add(table);
+        }
+    };
 
     //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /**

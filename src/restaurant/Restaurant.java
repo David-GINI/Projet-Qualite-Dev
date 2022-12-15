@@ -28,6 +28,8 @@ public class Restaurant {
     public ArrayList<Client> listeClientsPris = new ArrayList<Client>();
     public ArrayList<Client> fileDAttente = new ArrayList<Client>();
     public ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
+
+    public final int NB_TABLES_MAX = 10;
     public ArrayList<Table> listeTables = new ArrayList<Table>();
     public List<Double> listeNotes = new ArrayList<Double>();
     public double note;
@@ -45,6 +47,8 @@ public class Restaurant {
         this.nom = nom;
         this.etatProprete = Etat.PROPRE;
         this.caisse = 5000;
+        Table table = new Table(new ArrayList<Client>(), 1, 4);
+        this.listeTables.add(table);
         this.donnees = new Data();
     }
     /**
