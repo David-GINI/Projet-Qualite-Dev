@@ -325,6 +325,32 @@ public class MainSimu {
         System.out.println();
     }
 
+    public static void routineRecrutement(Restaurant restaurant, Journee journee) {
+
+        Scanner sc = new Scanner(System.in);
+        String userAnswer;
+
+        restaurant.genereEmployes(16);
+        System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
+        System.out.println();
+        pickEmployes(restaurant);
+        System.out.println("[RÉCAPITULATIF STAFF]");
+        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        trierCuisiniers(restaurant.listeCuisiniers, "efficacite");
+        afficherCuisiniers(restaurant.listeCuisiniers, false);
+        trierNettoyeurs(restaurant.listeNettoyeurs, "efficacite");
+        afficherNettoyeurs(restaurant.listeNettoyeurs, false);
+        System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
+        userAnswer = sc.nextLine();
+        restaurant.revenuParJour = 0;
+        journee.nextDay();
+        journee.setHeure(journee.heureOpen);
+        System.out.println("Bienvenue chez " + restaurant.nom + ", nous sommes " + journee.jour);
+        journee.setObjectifRevenu(50);
+        System.out.println("Objectif pour aujourd'hui: " + journee.objectifRevenu + "€.");
+        restaurant.ouvert = true;
+    }
+
     /**
      * Fonction qui effectue les appels nécessaires pour fermer le restaurant avant de passer à la journée suivante
      * @param restaurant
@@ -512,21 +538,9 @@ public class MainSimu {
 
         Journee notreSimu = new Journee(1000, Jour.LUNDI,8,12,8);
         restaurant.genereClients(3);
-        System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
-        System.out.println();
-        //La journée commence et on choisit les Employes à recruter
-        pickEmployes(restaurant);
-        System.out.println("[RÉCAPITULATIF STAFF]");
-        System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-        //Avant l'ouverture, on affiche la liste de Nettoyeurs et Cuisiniers
-        trierCuisiniers(restaurant.listeCuisiniers, "efficacite");
-        afficherCuisiniers(restaurant.listeCuisiniers, false);
-        trierNettoyeurs(restaurant.listeNettoyeurs, "efficacite");
-        afficherNettoyeurs(restaurant.listeNettoyeurs, false);
 
-        System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
-        userAnswer = scan.nextLine();
-        restaurant.ouvert = true;
+        routineRecrutement(restaurant, notreSimu);
+
         ThreadHandleOpen clock = new ThreadHandleOpen(notreSimu, restaurant);
         new Thread(clock).start();
         ThreadClientWait attenteClient = new ThreadClientWait(restaurant);

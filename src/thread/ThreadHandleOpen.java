@@ -33,7 +33,6 @@ public class ThreadHandleOpen implements Runnable{
      */
     public void run() {
         while (true){
-            System.out.println(RESTO.listeClients);
             System.out.println("----------------------------");
             System.out.println("Il est : "+JOURNEE.heure + " heure");
             System.out.println("----------------------------");
@@ -50,26 +49,9 @@ public class ThreadHandleOpen implements Runnable{
                 String choix = jourSuivant.nextLine();
                 if(Objects.equals(choix, "Oui")){
                     RESTO.genereClients(3);
-                    RESTO.genereEmployes(16);
-                    System.out.println("Début de la journée. Voici les employés qui ont postulé à Mama's Burgeria:");
-                    System.out.println();
-                    pickEmployes(RESTO);
-                    System.out.println("[RÉCAPITULATIF STAFF]");
-                    System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
-                    trierCuisiniers(RESTO.listeCuisiniers, "efficacite");
-                    afficherCuisiniers(RESTO.listeCuisiniers, false);
-                    trierNettoyeurs(RESTO.listeNettoyeurs, "efficacite");
-                    afficherNettoyeurs(RESTO.listeNettoyeurs, false);
-                    System.out.println("Entrez n'importe quelle touche pour procéder à l'ouverture.");
-                    choix = jourSuivant.nextLine();
-                    RESTO.revenuParJour = 0;
-                    JOURNEE.nextDay();
-                    JOURNEE.setHeure(JOURNEE.heureOpen);
-                    System.out.println("Bienvenue chez " + RESTO.nom + ", nous sommes " + JOURNEE.jour);
-                    Scanner newObjRevenu = new Scanner(System.in);
-                    System.out.println("Quel est votre objectif de revenus aujourd'hui patron ?");
-                    JOURNEE.setObjectifRevenu(newObjRevenu.nextDouble());
-                    RESTO.ouvert = true;
+
+                    routineRecrutement(RESTO, JOURNEE);
+
                     System.out.println("----------------------------");
                     System.out.println("Il est : "+JOURNEE.heure + " heure");
                     System.out.println("----------------------------");
